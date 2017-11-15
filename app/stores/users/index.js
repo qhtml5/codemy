@@ -53,7 +53,7 @@ class Users extends Connect {
     });
   }
 
-  @action setCurrentUser = (body, token) => { 
+  @action setCurrentUser(body, token) { 
     this.signedIn = true;
     const { user } = body.data;
     this.selected = {  
