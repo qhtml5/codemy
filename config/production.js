@@ -29,16 +29,22 @@ const config = {
   module: {
     rules: [
       loaders.babel, loaders.assets, {
-      test: /\.(scss|sass|css)$/i,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [css, postcss,'resolve-url-loader', sass]
-      })
-    }]
+        test: /\.css$/i,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader', use: 'css-loader',
+        })
+      }, {
+        test: /\.(scss|sass)$/i,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [css, postcss,'resolve-url-loader', sass]
+        })
+      }
+    ]
   },
 
   plugins: [
-    require(resolve(__dirname, 'template')),
+    require(path.resolve(__dirname, 'template')),
     new CleanWebpackPlugin(['dist'], { 
       root: path.resolve(__dirname, '..')
     }),

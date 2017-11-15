@@ -11,6 +11,7 @@ output.chunkFilename = 'javascripts/[name].[hash].chunk.js'
 
 const loaders = {
   babel: require('./loaders/babel'),
+  css: require('./loaders/css'),
   assets: require('./loaders/assets')
 }
 
@@ -25,8 +26,8 @@ const config = {
 
   module: {
     rules: [
-      loaders.babel, loaders.assets, {
-      test: /\.(scss|sass|css)$/i,
+      loaders.babel, loaders.assets, loaders.css, {
+      test: /\.(scss|sass)$/i,
       use: [{ loader: 'style-loader' }, css, postcss, sass]
     }]
   },

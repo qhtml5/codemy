@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import { IndexLink, Link } from 'react-router';
+import { BaseLink, Link } from 'react-router5';
 
 import styles from './index.sass';
 

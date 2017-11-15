@@ -12,7 +12,7 @@ class Application extends React.Component {
     return (
       <div id='Application'>
         <div styleName='sidebar'>
-          Sidebar
+          <Menu.Main />
         </div>
         <div className='content'>
           <Pages />
