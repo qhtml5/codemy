@@ -1,2 +1,26 @@
+@import 'styles/colors'
+@import 'styles/measurements'
+
+a
+  color: $flat-green-1
+
 .sidebar
-  background: red
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 0
+  background: $flat-blue-4
+  overflow: auto
+  margin-left: -$nav-width
+  width: $nav-width
+  @media (min-width: 64.1em)
+    left: $nav-width
+
+.content
+  margin-left: 0
+  background: white
+  height: 100%
+  @media (min-width: 58em)
+    margin-left: $nav-width + 6% + 5%
+  @media (min-width: 64.1em)
+    margin-left: $nav-width

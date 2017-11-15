@@ -1,25 +1,27 @@
-const webpack = require('webpack');
-const { join, resolve } = require('path');
-const { sync } = require('glob');
+const webpack = require('webpack')
+const path = require('path')
+const { sync } = require('glob')
 
-const entry = require('./entry');
-const output = require('./output');
+const entry = require('./entry')
+const output = require('./output')
+const resolve = require('./resolve')
 
-output.filename = 'javascripts/[name].[hash].js';
-output.chunkFilename = 'javascripts/[name].[hash].chunk.js';
+output.filename = 'javascripts/[name].[hash].js'
+output.chunkFilename = 'javascripts/[name].[hash].chunk.js'
 
 const loaders = {
   babel: require('./loaders/babel'),
   assets: require('./loaders/assets')
-};
+}
 
-const css = require('./styles/css');
-const postcss = require('./styles/postcss');
-const sass = require('./styles/sass');
+const css = require('./styles/css')
+const postcss = require('./styles/postcss')
+const sass = require('./styles/sass')
 
 const config = {
   entry,
   output,
+  resolve,
 
   module: {
     rules: [
@@ -30,7 +32,7 @@ const config = {
   },
 
   plugins: [
-    require(resolve(__dirname, 'template')),
+    require(path.resolve(__dirname, 'template')),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest'],
       minChunks: Infinity
@@ -49,4 +51,4 @@ const config = {
   }
 }
 
-module.exports = config;
+module.exports = config
