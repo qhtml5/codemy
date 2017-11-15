@@ -1,6 +1,8 @@
 import collection from './collection';
 
-export { collection }
+export { 
+  collection 
+}
 
 
 
