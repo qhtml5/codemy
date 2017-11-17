@@ -4,7 +4,7 @@ import { Provider } from 'mobx-react'
 import { RouterProvider } from 'react-router5'
 
 import Application from './layouts/application'
-import createRouter from '../config/router'
+import createRouter from 'config/router'
 
 import { api } from 'fronto-api'
 import * as stores from './stores'

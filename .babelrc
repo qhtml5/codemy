@@ -14,7 +14,10 @@
   "plugins": [
     "lodash",
     ["module-resolver", {
-      "root": "./app"
+      "root": "./app",
+      "alias": {
+        "config": "./config"
+      }
     }],
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
     ["react-css-modules", {
