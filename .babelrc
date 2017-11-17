@@ -19,7 +19,9 @@
         "config": "./config"
       }
     }],
-    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    ["@babel/plugin-proposal-class-properties", { 
+      "loose": true 
+    }],
     ["react-css-modules", {
       "webpackHotModuleReloading": true,
       "filetypes": {
