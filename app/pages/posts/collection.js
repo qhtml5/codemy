@@ -4,9 +4,9 @@ import { extendObservable } from 'mobx'
 import { inject, observer }  from 'mobx-react'
 import _             from 'lodash'
 
-import Spinner       from 'front/components/Spinner'
+import Loading       from 'components/loading'
 
-import Post          from './Post'
+// import Post          from './Post'
 import './collection.sass'
 
 @inject('endpoints') @observer
@@ -18,9 +18,9 @@ class Collection extends React.Component {
     const { studio } = endpoints
 
     // Finish this
-    extendObservable(this, {
-      posts: 
-    })
+    // extendObservable(this, {
+    //   posts: 
+    // })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,7 +57,7 @@ class Collection extends React.Component {
           {collection.map((post, index) =>
             <Post key={post.id} {...post} index={index % 24} pathname={posts.route({ id: post.slug })} />
           )}
-          <Spinner active={isLoading} />
+          <Loading active={isLoading} />
         </div>
       </Scrollbars>
     )

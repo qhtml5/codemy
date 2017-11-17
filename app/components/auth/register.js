@@ -2,8 +2,8 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { Link } from 'react-router5'
 
-import form from '~/app/styles/form.sass'
-import button from '~/app/styles/button.sass'
+import form from 'styles/form.sass'
+import button from 'styles/button.sass'
 
 import { Auth } from 'components/page'
 

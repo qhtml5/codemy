@@ -13,7 +13,9 @@
 
   "plugins": [
     "lodash",
-    "babel-plugin-root-import",
+    ["module-resolver", {
+      "root": "./app"
+    }],
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
     ["react-css-modules", {
       "webpackHotModuleReloading": true,

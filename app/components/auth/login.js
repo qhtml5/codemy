@@ -4,8 +4,8 @@ import { observer, inject } from 'mobx-react'
 import { Auth } from 'components/page'
 import links from './links'
 
-import form from '~/app/styles/form.sass'
-import button from '~/app/styles/button.sass'
+import form from 'styles/form.sass'
+import button from 'styles/button.sass'
 
 import logo from 'assets/logo-white.svg'
 import t from './login.locale'
