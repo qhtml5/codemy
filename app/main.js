@@ -26,12 +26,12 @@ const resources = {
 }
 
 const app = 
-  <Provider {...resources} endpoints={endpoints}>
-    <RouterProvider router={router}>
+  <RouterProvider router={router}>
+    <Provider {...resources} endpoints={endpoints}>
       <Application />
-    </RouterProvider>
-  </Provider>
-
+    </Provider>
+  </RouterProvider>
+  
 router.start(() => 
   render(app, document.getElementById('app'))
 )

@@ -1,4 +1,4 @@
-import collection from './collection';
+import collection from './collection'
 
 export { 
   collection 

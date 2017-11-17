@@ -1,4 +1,4 @@
-import Spinner from 'lib/components/spinner';
-import graphics from './oval.svg';
+import Spinner from 'components/spinner'
+import graphics from './oval.svg'
 
-export default Spinner(graphics, 48, 48);
+export default Spinner(graphics, 48, 48)

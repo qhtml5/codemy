@@ -7,7 +7,6 @@
       },
       "useBuiltIns": "entry"
     }],
-    "@babel/es2017",
     "@babel/stage-0",
     "@babel/react"
   ],

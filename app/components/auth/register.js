@@ -1,0 +1,87 @@
+import React from 'react';
+import { observer, inject } from 'mobx-react';
+import { Link } from 'react-router';
+import classNames from 'classnames';
+
+import Page from 'front/components/Page';
+import links from './links';
+
+import form from 'styles/form.sass';
+
+import button from 'front/styles/buttons.sass';
+import t from './register.locale';
+
+@inject('user') @observer
+class Register extends React.Component { 
+  componentDidMount() {
+    this.props.user.clearMessage();
+  }
+
+  submitForm = (e) => {
+    e.preventDefault();
+    const { email, password, password_confirmation } = this.refs;
+    const { user } = this.props;
+
+    if (email.value === '' || password.value === '' || password_confirmation.value == '') {
+      user.setMessage({
+        body: t('fields_are_empty'),
+        type: 'error',
+      });
+
+      return;
+    }
+
+    if (password.value !== password_confirmation.value) {
+      user.setMessage({
+        body: t('password_dont_match'),
+        type: 'error',
+      });
+
+      return;
+    }
+
+    user.setEmail(email.value);
+    user.create(
+      email.value,
+      password.value,
+      password_confirmation.value,
+    );
+  }
+
+  render() {
+    const { user, fill, animate } = this.props;
+    const { message, clearMessage, isLoading } = user;
+
+    return (
+      <Page.Auth alert={{ message, clearMessage }} isLoading={isLoading} fill={fill} animate={animate}
+                 extras={links(this.props.modal, ['login', 'forgot_password'])}>
+        <h3>{t('create_account')}</h3>
+        <form className={classNames('pure-form', 'pure-form-stacked', form.body)} onSubmit={this.submitForm}>
+          <fieldset>
+            <label htmlFor='email'>{t('email')}</label>
+            <input type='email'
+                    ref='email'
+                    placeholder={t('email')}
+                    className='pure-input-1' />
+
+            <label htmlFor='password'>{t('password')}</label>
+            <input type='password'
+                    ref='password'
+                    placeholder={t('password')}
+                    className='pure-input-1' />
+
+            <input type='password'
+                    ref='password_confirmation'
+                    placeholder={t('password_confirmation')}
+                    className='pure-input-1' />
+          </fieldset>
+          <button type='submit' className={classNames('pure-button', button.success, 'pure-input-1')}>
+            {t('register')}
+          </button>
+        </form>
+      </Page.Auth>
+    );
+  }
+}
+
+export default Register;

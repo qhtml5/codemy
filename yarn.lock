@@ -549,12 +549,6 @@
     invariant "^2.2.2"
     semver "^5.3.0"
 
-"@babel/preset-es2017@^7.0.0-beta.32":
-  version "7.0.0-beta.32"
-  resolved "https://registry.yarnpkg.com/@babel/preset-es2017/-/preset-es2017-7.0.0-beta.32.tgz#52ad79e1d44614abb971e75f53eb30daee112902"
-  dependencies:
-    "@babel/plugin-transform-async-to-generator" "7.0.0-beta.32"
-
 "@babel/preset-react@^7.0.0-beta.32":
   version "7.0.0-beta.32"
   resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.0.0-beta.32.tgz#16fb4f376da3f620f53f19d061b1569fd08a0519"

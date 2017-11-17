@@ -6,7 +6,7 @@ const entry = require('./entry')
 const output = require('./output')
 const resolve = require('./resolve')
 
-output.filename = 'javascripts/[name].[hash].js'
+output.filename = 'javascripts/[name].js'
 output.chunkFilename = 'javascripts/[name].[hash].chunk.js'
 
 const loaders = {
@@ -48,7 +48,10 @@ const config = {
     watchOptions: {
       ignored: /node_modules/
     },
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      "/auth": "http://localhost:4000"
+    }
   }
 }
 
