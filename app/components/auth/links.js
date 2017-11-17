@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router5';
 
-import { Login, Register, Forgot } from 'front/components/Auth';
+import { Login, Register, Forgot } from 'components/auth';
 
 import t from './links.locale';
 
@@ -16,11 +16,17 @@ const components = {
 
 const links = {
   login: 
-    <Link key='login' to='/users/sign_in'>{t('login')}</Link>,
+    <Link key='sign_in' 
+          routeName='users.sign_in' 
+          routeOptions={{reload: true}}>{t('login')}</Link>,
   dont_have_account: 
-    <Link key='dont_have_account' to='/users/registration'>{t('dont_have_account')}</Link>,
+    <Link key='registration' 
+          routeName='users.registration' 
+          routeOptions={{reload: true}}>{t('dont_have_account')}</Link>,
   forgot_password:
-    <Link key='forgot_password' to='/users/forgot_password'>{t('forgot_password')}</Link>,
+    <Link key='forgot_password' 
+          routeName='users.forgot_password' 
+          routeOptions={{reload: true}}>{t('forgot_password')}</Link>,
 }
 
 const callback = (e, modal, key) => {

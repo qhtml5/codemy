@@ -1,0 +1,34 @@
+@import 'styles/colors'
+@import 'styles/measurements'
+
+.filter
+  position: fixed
+  top: 0
+  bottom: 0
+  overflow: auto
+  background: $flat-gray-1
+  margin-left: -$filter-width-tablet
+  width: $filter-width-tablet
+  overflow: hidden
+  transition: width 1s
+  // setting for desktop
+  @media (min-width: 64.1em)
+    margin-left: -$filter-width
+    width: $filter-width
+    left: $nav-width + $filter-width
+    &.playlist
+      width: $playlist-width
+  a
+    text-decoration: none
+
+.results
+  margin-left: $result-offset-tablet
+  overflow: hidden
+  position: fixed
+  // setting for desktop
+  @media (min-width: 64.1em)
+    margin-left: $filter-width
+    width: calc(100% - #{$filter-width} - #{$nav-width})
+    &.video
+      margin-left: $playlist-width
+      width: calc(100% - #{$playlist-width} - #{$nav-width})

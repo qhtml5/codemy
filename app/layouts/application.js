@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
 
-import Spinner from '../components/spinner'
+import Loading from 'components/loading'
 import Pages from '../pages'
 import * as Menu from './menu'
 
@@ -18,7 +18,7 @@ class Application extends React.Component {
     const { signedIn, isLoading } = this.props.user
 
     if (isLoading)
-      return (<Spinner />)
+      return (<Loading />)
 
     if (signedIn)
       return (<Menu.Member />)

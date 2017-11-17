@@ -1,4 +1,4 @@
-import localize from 'helpers/localize';
+import localize from 'fronto-localize';
 
 const en = {
   sign_in: 'Sign In',

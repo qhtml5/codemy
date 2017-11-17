@@ -1,9 +1,7 @@
-import React from 'react';
+import React from 'react'
+import { Login } from 'components/auth'
 
-export default class extends React.PureComponent {
-  render() {
-    return (
-      <div>Sign In</div>
-    )
-  }
-}
+export default props =>
+  <Login fill
+         animate='animated fadeIn'
+         callback={() => {}} />

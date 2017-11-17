@@ -1,0 +1,21 @@
+@import 'styles/colors'
+@import 'styles/field'
+
+.body
+  text-align: left
+  margin: 2em auto
+  max-width: 25em
+  input, textarea, select
+    +field()
+    box-shadow: 0.2em 0.2em 0em $flat-blue-4 !important
+    &::placeholder
+      font-weight: 100
+  label
+    font-weight: 100
+    color: white
+    text-shadow: 0.1em 0.1em 0em $flat-blue-4 !important
+  button
+    font-weight: 100
+    box-shadow: 0.2em 0.2em 0em $flat-blue-4 !important
+    &:active
+      box-shadow:  0em 0em 0em $flat-blue-4 !important
