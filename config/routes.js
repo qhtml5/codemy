@@ -1,9 +1,9 @@
 export default [
   { name: 'posts', path: '/posts', children: [
-    { name: 'show', path: '/:id' }
+    { name: 'show', path: '/:post' }
   ]},
   { name: 'channels', path: '/channels', forwardTo: 'posts', children: [
-    { name: 'show', path: '/:id' }
+    { name: 'show', path: '/:channel' }
   ]},
   { name: 'users', path: '/users', children: [
     { name: 'sign_in', path: '/sign_in' },
