@@ -50,7 +50,8 @@ const config = {
     },
     historyApiFallback: true,
     proxy: {
-      "/auth": "http://localhost:4000"
+      "/auth": "http://localhost:4000",
+      "/v1": "http://localhost:4000"
     }
   }
 }

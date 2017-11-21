@@ -33,7 +33,7 @@ class Application extends React.Component {
           <Menu.Main />
           {this.memberOrGuest()}
         </div>
-        <div className='content'>
+        <div styleName='content'>
           <Pages />
         </div>
       </div>

@@ -6,6 +6,8 @@ import _             from 'lodash'
 
 import Loading       from 'components/loading'
 
+import { Posts }     from 'stores'
+
 // import Post          from './Post'
 import './collection.sass'
 
@@ -17,27 +19,24 @@ class Collection extends React.Component {
     const { endpoints } = this.props
     const { studio } = endpoints
 
-    // Finish this
-    // extendObservable(this, {
-    //   posts: 
-    // })
+    extendObservable(this, {
+      posts: new Posts(endpoints.studio)
+    })
   }
 
   componentWillReceiveProps(nextProps) {
-    const { posts } = this.props
-    posts.findAll({ search: true, channel_id: nextProps.channelId, page: 1 })
+    this.posts.findAll({ search: true, channel_id: nextProps.channelId, page: 1 })
   }
 
   componentDidMount() {
     const { posts, channelId } = this.props
-    posts.findAll({ search: true, channel_id: channelId, page: 1 })
+    this.posts.findAll({ search: true, channel_id: channelId, page: 1 })
   }
 
   paginate = _.debounce(() => { 
-    const { posts } = this.props
-    const { currentPage } = posts
+    const { currentPage } = this.posts
 
-    posts.findAll({ 
+    this.posts.findAll({ 
       search: true, channel_id: this.props.channelId, page: currentPage + 1 
     }, { replace: false })
   }, 800)
@@ -47,8 +46,7 @@ class Collection extends React.Component {
   }
 
   render() {
-    const { posts } = this.props
-    const { isLoading, collection } = posts
+    const { isLoading, collection } = this.posts
 
     return (
       <Scrollbars autoHeight autoHeightMin={`calc(100vh - 52px)`} 

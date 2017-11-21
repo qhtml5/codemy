@@ -1,5 +1,7 @@
 import Users from './users'
+import Posts from './posts'
 
 export { 
-  Users
+  Users,
+  Posts
 }
