@@ -8,7 +8,7 @@ class Filterable extends React.PureComponent {
       <div styleName={c({ filter: true, playlist: this.props.playback })}>
         {this.props.filter}
       </div>
-      <div className={c({ results: true, video: this.props.playback })}>
+      <div styleName={c({ results: true, video: this.props.playback })}>
         {this.props.children}
       </div>
     </div>

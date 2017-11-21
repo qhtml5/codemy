@@ -1,0 +1,25 @@
+@import 'styles/colors'
+
+.item
+  color: $flat-gray-3
+  background: $flat-gray-1
+  border-bottom: 1px solid white
+  &:last-child
+    border-bottom: none
+  a
+    color: $flat-gray-3
+    &:hover
+      background: $flat-gray-1
+    h5
+      color: $flat-gray-4
+      text-transform: uppercase
+      margin: 0.2em 0em 0.3em 0em
+    p
+      font-size: 0.7em
+      margin: 0.1em 0em 0.2em 0em
+    &.active
+      background: $flat-green-1
+      color: white
+      text-shadow: 0 0.1em $flat-green-2
+      h5
+        color: white
