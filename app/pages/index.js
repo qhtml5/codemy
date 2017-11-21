@@ -4,7 +4,13 @@ import { routeNode } from 'react-router5'
 import * as posts from './posts'
 import * as users from './users'
 
-const pages = { posts, users }
+const pages = { 
+  posts, 
+  users, 
+  channels: {
+    show: posts.collection
+  }
+}
 
 export default routeNode('')((props) => {
   const { route } = props;

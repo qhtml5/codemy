@@ -46,8 +46,7 @@ class Filter extends React.Component {
             <span className='pure-menu-heading' styleName='heading.heading'>{type}</span>
             <ul className='pure-menu-list'>
               {byType[type].map(channel =>
-                <Channel model={channel} key={channel.id} 
-                         pathname={this.route(channel)} />
+                <Channel {...channel} key={channel.id} />
               )}
             </ul>
           </div>

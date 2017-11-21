@@ -5,8 +5,12 @@ import { Link, withRoute } from 'react-router5'
 import './index.sass'
 import logo   from 'assets/logo.svg'
 
+const isActive = (paths = [], router) => {
+  return paths.some((path) => router.isActive(path) === true)
+}
+
 const Main = (props) => {
-  const { isActive } = props.router;
+  const { router } = props;
 
   return (
     <div className='pure-menu' styleName='menu'>
@@ -18,7 +22,7 @@ const Main = (props) => {
       <ul className='pure-menu-list'>
         <li className='pure-menu-item'>
           <Link routeName='posts' className='pure-menu-link' 
-                styleName={c({ active: isActive('posts') })}>
+                styleName={c({ active: isActive(['posts', 'channels'], router) })}>
             <i className='material-icons'>video_library</i>
             <span>Videos</span>
           </Link>

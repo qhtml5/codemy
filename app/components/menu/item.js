@@ -5,7 +5,7 @@ import './item.sass'
 
 const Item = props =>
   <li className='pure-menu-item' styleName='item'>
-    <Link routeName='posts' to={props.url}
+    <Link routeName='channels.show' routeParams={{ id: props.id }}
           className='pure-menu-link'
           activeClassName='active'>
       <h5>{props.name}</h5>

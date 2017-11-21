@@ -10,10 +10,10 @@ const updated = ago => {
 }
 
 const Channel = props => {
-  const { name, updated_at_ago } = props.model
+  const { name, updated_at_ago, slug } = props
 
   return (
-    <Item url={props.pathname} name={name} text={updated(updated_at_ago)} />
+    <Item id={slug} name={name} text={updated(updated_at_ago)} />
   )
 }
 
