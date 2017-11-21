@@ -29,13 +29,13 @@ class Application extends React.Component {
   render() {    
     return (
       <div id='Application'>
-        <div styleName='sidebar'>
+        <aside styleName='sidebar'>
           <Menu.Main />
           {this.memberOrGuest()}
-        </div>
-        <div styleName='content'>
+        </aside>
+        <main styleName='content'>
           <Pages />
-        </div>
+        </main>
       </div>
     );
   }

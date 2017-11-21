@@ -8,7 +8,7 @@ import Loading       from 'components/loading'
 
 import { Posts }     from 'stores'
 
-// import Post          from './Post'
+import Post          from './post'
 import './collection.sass'
 
 @inject('endpoints') @observer
@@ -53,7 +53,7 @@ class Collection extends React.Component {
                   onScrollFrame={this.handleScroll} universal ref={node => { this.scrollbar = node }}>
         <div styleName='collection'>
           {collection.map((post, index) =>
-            <Post key={post.id} {...post} index={index % 24} pathname={posts.route({ id: post.slug })} />
+            <Post key={post.id} {...post} index={index % 24} />
           )}
           <Loading active={isLoading} />
         </div>

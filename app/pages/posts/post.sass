@@ -1,0 +1,50 @@
+@import 'styles/colors'
+
+.shell
+  background: $flat-gray-1
+.post
+  position: relative
+  > div
+    margin: 0.5em 0em 0.5em 0em
+    @media (min-width: 35.5em)
+      margin: 0.5em
+  a
+    text-decoration: none
+  img
+    filter: grayscale(100%) opacity(50%)
+    border-top-left-radius: 2px
+    border-top-right-radius: 2px
+
+  &:hover
+    img
+      filter: none
+
+    .overlay
+      background: transparent
+
+    .title
+      background: $flat-blue-3
+
+.title
+  border-bottom-left-radius: 2px
+  border-bottom-right-radius: 2px
+  position: relative
+  bottom: 0
+  left: 0
+  right: 0
+  top: 0
+  width: auto
+  height: 3.5em
+  margin: 0em !important
+  padding: 0.5em 0.5em 0em 0.5em
+  background: $flat-blue-4
+  h2
+    color: white
+    line-height: 1.3em
+    font-size: 0.8em
+    margin: 0em
+    font-weight: 300
+    overlay: ellipsis
+    @media (min-width: 64.1em)
+      font-size: 1em
+
