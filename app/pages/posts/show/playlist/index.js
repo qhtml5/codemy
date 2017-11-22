@@ -13,7 +13,7 @@ import styles from './index.sass'
 import Store from './store'
 
 @inject('endpoints') @observer
-class Playlist extends React.PureComponent {
+class Playlist extends React.Component {
   showPrevious = 1
   itemHeight = 42
 
