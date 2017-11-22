@@ -1,16 +1,30 @@
 import React from 'react'
-import { Link } from 'react-router5'
+import c from 'classnames'
+import { Link, withRoute } from 'react-router5'
 
 import './item.sass'
 
-const Item = props =>
-  <li className='pure-menu-item' styleName='item'>
-    <Link routeName='channels.show' routeParams={{ channel: props.id }}
-          className='pure-menu-link'
-          activeClassName='active'>
-      <h5>{props.name}</h5>
-      {props.text}
-    </Link>
-  </li>
+const Item = props => {
+  const { isActive } = props.router
 
-export default Item
+  const activeClass = c({ 
+    active: isActive('channels.show', { 
+      channel: props.id 
+    }) 
+  })
+
+  return (
+    <li className='pure-menu-item' styleName='item'>
+      <Link routeName='channels.show' 
+            routeOptions={{ reload: true }}
+            routeParams={{ channel: props.id }}
+            className='pure-menu-link'
+            styleName={activeClass}>
+        <h5>{props.name}</h5>
+        {props.text}
+      </Link>
+    </li>
+  )
+}
+
+export default withRoute(Item)

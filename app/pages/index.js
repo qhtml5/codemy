@@ -13,10 +13,13 @@ const pages = {
 }
 
 export default routeNode('')((props) => {
-  const { route } = props;
+  const { route } = props
+  const { params } = route
 
   const resource = route.name.split('.')[0]
   const page = route.name.split('.')[1] || 'collection'
 
-  return createElement(pages[resource][page])
+  return createElement(pages[resource][page], {
+    params
+  })
 })

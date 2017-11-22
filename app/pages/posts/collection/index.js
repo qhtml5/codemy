@@ -3,7 +3,6 @@ import Scrollbars           from 'react-custom-scrollbars'
 import { extendObservable } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import _                    from 'lodash'
-import { withRoute }        from 'react-router5' 
 
 import { Filterable }       from 'components/page'
 import Loading              from 'components/loading'
@@ -23,27 +22,27 @@ class Collection extends React.Component {
     const { endpoints } = this.props
     const { studio } = endpoints
 
-    console.log(props.route.params)
-
     extendObservable(this, {
       posts: new Posts(endpoints.studio)
     })
   }
 
   componentWillReceiveProps(nextProps) {
-    this.posts.findAll({ search: true, channel_id: nextProps.channelId, page: 1 })
+    this.posts.findAll({ search: true, channel_id: nextProps.params.channel, page: 1 })
   }
 
   componentDidMount() {
-    const { posts, channelId } = this.props
-    this.posts.findAll({ search: true, channel_id: channelId, page: 1 })
+    const { posts, params } = this.props
+    this.posts.findAll({ search: true, channel_id: params.channel, page: 1 })
   }
 
   paginate = _.debounce(() => { 
     const { currentPage } = this.posts
 
+    const { channel } = this.props.params
+
     this.posts.findAll({ 
-      search: true, channel_id: this.props.channelId, page: currentPage + 1 
+      search: true, channel_id: channel, page: currentPage + 1 
     }, { replace: false })
   }, 800)
 
@@ -71,4 +70,4 @@ class Collection extends React.Component {
   }
 }
 
-export default withRoute(Collection)
+export default Collection
