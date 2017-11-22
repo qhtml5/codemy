@@ -8,7 +8,7 @@ const Post = props =>
        styleName='post'
        style={{ animationDelay: `${props.index / 12}s` }}>
     <div>
-      <Link routeName='posts.show' routeParams={{ post: props.slug }}>
+      <Link routeName='posts.show' routeOptions={{ reload: true }} routeParams={{ post: props.slug }}>
         <div styleName='shell'>
           <img src={props.thumbnails.high} className='pure-img' />
         </div>

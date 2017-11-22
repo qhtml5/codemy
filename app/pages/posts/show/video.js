@@ -10,7 +10,7 @@ import t from './video.locale'
 
 import styles from './video.sass'
 
-@inject('posts') @observer
+@observer
 class Video extends React.Component {
   vimeo = (id) =>
     `https://vimeo.com/${id}`

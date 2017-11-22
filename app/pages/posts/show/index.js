@@ -1,7 +1,6 @@
 import React from 'react'
 import Scrollbars from 'react-custom-scrollbars'
 import { observer, inject } from 'mobx-react'
-import { extendObservable } from 'mobx'
 
 import { Filterable } from 'components/page'
 // import Modal from 'components/Modal'
@@ -22,9 +21,7 @@ class Show extends React.Component {
 
     const { endpoints } = props
 
-    extendObservable(this, { 
-      posts: new Posts(endpoints.studio)
-    })
+    this.posts = new Posts(endpoints.studio)
   }
 
   componentDidMount() {
@@ -38,22 +35,19 @@ class Show extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.props.posts.findBy({ id: nextProps.params.postId })
+    this.posts.findBy({ id: nextProps.params.post })
   }
 
   render() {
-    const { selected, isLoading } = this.props.posts
+    const { selected, isLoading } = this.posts
     const { channel } = selected
 
     const { modal } = this.props.setting.layout
 
-    // const modal = 
-      // <Modal ref={node => { this.modal = node }} />
-    
     return (
       <Filterable filter={<Playlist params={this.props.params} channel={channel} />} playback>
         <div styleName='video'>
-          <Video modal={modal} />
+          <Video modal={modal} posts={this.posts} />
         </div>
         <div styleName='title_bar'>
           <h1>{selected.title}</h1>

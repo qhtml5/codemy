@@ -14,7 +14,7 @@ import styles from './index.sass'
 import Store from './store'
 
 @inject('endpoints') @observer
-class Playlist extends React.PureComponent {
+class Playlist extends React.Component {
   @observable current = null
   @observable userInteracted = false
   showPrevious = 1
@@ -23,7 +23,7 @@ class Playlist extends React.PureComponent {
   @action setCurrentSlug = (slug) => this.currentSlug = slug
   @action setUserInteracted() { this.userInteracted = true }
   @action setCurrent = (node) => {
-    if (node && node.props.slug === this.props.params.postId) {
+    if (node && node.props.slug === this.props.params.post) {
       this.current = node
     }
   }
@@ -86,7 +86,7 @@ class Playlist extends React.PureComponent {
           {channel.name}
         </span>
         <Scrollbars autoHeight autoHeightMin={`calc(100vh - 30px)`} universal 
-                    ref={node => { this.scrollbar = node }}>
+                    ref={node => this.scrollbar = node}>
           <ul className='pure-menu-list' styleName='styles.playlist'>
             {collection.map((item, index) =>
               <Item key={item.id} {...item} ref={this.setCurrent} index={index} id={item.slug} />
