@@ -1,6 +1,5 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { extendObservable } from 'mobx'
 
 import Loading from 'components/loading'
 
@@ -16,9 +15,7 @@ class Filter extends React.Component {
     super(props)
     const { endpoints } = props
 
-    extendObservable(this, { 
-      channels: new Channels(endpoints.studio)
-    })
+    this.channels = new Channels(endpoints.studio)
   }
 
   componentDidMount() {

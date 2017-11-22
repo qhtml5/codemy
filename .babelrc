@@ -16,7 +16,8 @@
     ["module-resolver", {
       "root": "./app",
       "alias": {
-        "config": "./config"
+        "config": "./config",
+        "vendor": "./vendor"
       }
     }],
     ["@babel/plugin-proposal-class-properties", { 
