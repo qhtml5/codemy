@@ -7,6 +7,7 @@ import Application from './layouts/application'
 import createRouter from 'config/router'
 
 import { api } from 'fronto-api'
+import * as setting from './setting'
 import * as stores from './stores'
 
 const router = createRouter({ listener: true, logger: true })
@@ -26,7 +27,7 @@ const resources = {
 }
 
 const app = 
-  <Provider {...resources} endpoints={endpoints}>
+  <Provider {...resources} setting={setting} endpoints={endpoints}>
     <RouterProvider router={router}>
       <Application />
     </RouterProvider>

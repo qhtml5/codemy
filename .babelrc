@@ -13,7 +13,6 @@
 
   "plugins": [
     "lodash",
-    "@babel/transform-runtime",
     ["module-resolver", {
       "root": "./app",
       "alias": {

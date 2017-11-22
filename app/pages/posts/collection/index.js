@@ -1,6 +1,5 @@
 import React                from 'react'
 import Scrollbars           from 'react-custom-scrollbars'
-import { extendObservable } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import _                    from 'lodash'
 
@@ -22,18 +21,20 @@ class Collection extends React.Component {
     const { endpoints } = this.props
     const { studio } = endpoints
 
-    extendObservable(this, {
-      posts: new Posts(endpoints.studio)
-    })
+    this.posts = new Posts(endpoints.studio)
   }
+  
 
   componentWillReceiveProps(nextProps) {
-    this.posts.findAll({ search: true, channel_id: nextProps.params.channel, page: 1 })
+    const { channel } = nextProps.params
+
+    this.posts.findAll({ search: true, channel_id: channel, page: 1 })
   }
 
   componentDidMount() {
     const { posts, params } = this.props
-    this.posts.findAll({ search: true, channel_id: params.channel, page: 1 })
+    const { channel } = params
+    this.posts.findAll({ search: true, channel_id: channel, page: 1 })
   }
 
   paginate = _.debounce(() => { 

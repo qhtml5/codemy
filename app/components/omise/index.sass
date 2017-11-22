@@ -1,0 +1,60 @@
+@import 'styles/field'
+
+.action
+  text-align: left !important
+  padding-left: 0em !important
+  a
+    margin-left: 0em
+
+.number
+  letter-spacing: 0.2em
+
+.spinner
+  position: absolute
+  top: 0
+  right: 2em
+
+.type
+  border-top: 0.1em solid $flat-gray-1
+  border-bottom: 0.1em solid $flat-gray-1
+  padding-top: 0.5em
+  padding-bottom: 0.3em
+  margin-bottom: 1em
+  img
+    margin-left: 0.3em
+    margin-right: 0.3em 
+    filter: grayscale(100%)
+    &.active
+      filter: none
+
+.form
+  max-width: 40em
+  margin: 0em auto
+  text-align: left
+  label
+    color: $flat-gray-3
+    margin: 0.8em 0em
+  > div
+    > div
+      margin-right: 1em
+      margin-bottom: 0.5em
+      > div
+        margin-right: 0.5em
+  input
+    +field()
+    font-size: 1.2em
+    color: $flat-blue-3
+    padding: 0.3em !important
+    margin: 0em !important
+    border: 0.1em solid $flat-gray-2 !important
+    border-left: 0.3em solid $flat-gray-2 !important
+    &:focus
+      border: 0.1em solid $flat-orange-1 !important
+      border-left: 0.3em solid $flat-orange-1 !important
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button
+      -webkit-appearance: none
+      margin: 0
+    &.valid
+      border: 0.1em solid $flat-green-1 !important
+      border-left: 0.3em solid $flat-green-1 !important
+      color: $flat-green-1
