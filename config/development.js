@@ -35,7 +35,7 @@ const config = {
   plugins: [
     require(path.resolve(__dirname, 'template')),
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'manifest'],
+      name: ['base', 'manifest'],
       minChunks: Infinity
     })
   ],

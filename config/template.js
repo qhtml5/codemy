@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = new HtmlWebpackPlugin({
-  chunks: ['vendor', 'app', 'manifest'],
+  chunks: ['base', 'app', 'manifest'],
   filename: 'index.html',
   name: 'Codemy',
   minify: { 

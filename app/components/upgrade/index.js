@@ -8,12 +8,22 @@ import { Subscribe }        from 'components/subscription'
 import { Login }            from 'components/auth'
 import Omise                from 'components/omise'
 
+import { Subscriptions }    from 'stores'
+  
 import t from './index.locale'
 
 import './index.sass'
 
-@inject('user', 'subscription', 'cards') @observer
-class Upgrade extends React.PureComponent {
+@inject('user', 'endpoints') @observer
+class Upgrade extends React.Component {
+  constructor(props) {
+    super(props)
+
+    const { endpoints } = props
+
+    this.subscription = new Subscriptions(endpoints.studio)
+  }
+
   @computed get subscriptionActiveAndValid() {
     const { subscription, user } = this.props
     return user.signedIn
