@@ -6,6 +6,7 @@ import 'router5/plugins/logger'
 import 'router5/plugins/listeners'
 import 'router5/plugins/browser'
 import 'react-router5'
+
 import 'prismjs'
 import 'prismjs/components/prism-ruby'
 import 'prismjs/components/prism-bash'

@@ -47,7 +47,7 @@ class Show extends React.Component {
     return (
       <Filterable filter={<Playlist params={this.props.params} channel={channel} />} playback>
         <div styleName='video'>
-          <Video modal={modal} posts={this.posts} />
+          <Video modal={modal} posts={this.posts} params={this.props.params} />
         </div>
         <div styleName='title_bar'>
           <h1>{selected.title}</h1>

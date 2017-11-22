@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
 import { observer, inject } from 'mobx-react'
+import { Link } from 'react-router5'
 
 import Upgrade from 'components/upgrade'
 

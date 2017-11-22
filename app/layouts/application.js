@@ -1,5 +1,5 @@
 import React from 'react'
-import { observer, inject } from 'mobx-react'
+import { observer, Provider } from 'mobx-react'
 
 import Modal from '@fronto/components/modal'
 
@@ -10,7 +10,7 @@ import * as Menu from './menu'
 
 import './application.sass'
 
-@inject('user', 'setting') @observer
+@observer
 class Application extends React.Component {
   componentDidMount() {
     const { user } = this.props
@@ -37,16 +37,18 @@ class Application extends React.Component {
 
   render() {    
     return (
-      <div id='Application'>
-        <aside styleName='sidebar'>
-          <Menu.Main />
-          {this.memberOrGuest()}
-        </aside>
-        <main styleName='content'>
-          <Pages />
-        </main>
-        <Modal ref={this.setModal} />
-      </div>
+      <Provider {...this.props}>
+        <div id='Application'>
+          <aside styleName='sidebar'>
+            <Menu.Main />
+            {this.memberOrGuest()}
+          </aside>
+          <main styleName='content'>
+            <Pages />
+          </main>
+          <Modal ref={this.setModal} />
+        </div>
+      </Provider>
     );
   }
 }

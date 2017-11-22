@@ -23,15 +23,15 @@ const endpoints = {
 }
 
 const resources = {
+  setting,
+  endpoints,
   user: new stores.Users(endpoints.studio),
 }
 
 const app = 
-  <Provider {...resources} setting={setting} endpoints={endpoints}>
-    <RouterProvider router={router}>
-      <Application />
-    </RouterProvider>
-  </Provider>
+  <RouterProvider router={router}>
+    <Application {...resources} />
+  </RouterProvider>
 
 
 router.start(() => 
