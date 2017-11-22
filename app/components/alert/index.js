@@ -2,7 +2,7 @@ import React from 'react'
 import c from 'classnames'
 import './index.sass'
 
-export default class extends React.Component {
+export default class Alert extends React.PureComponent {
   dismissMessage = (e) => {
     e.preventDefault()
     this.props.dismiss()
