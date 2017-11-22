@@ -1,6 +1,7 @@
 import React from 'react'
 import Scrollbars from 'react-custom-scrollbars'
 import { observer, inject } from 'mobx-react'
+import { withRoute } from 'react-router5'
 
 import { Filterable } from 'components/page'
 // import Modal from 'components/Modal'
@@ -25,8 +26,8 @@ class Show extends React.Component {
   }
 
   componentDidMount() {
-    const { params } = this.props
-    this.posts.findBy({ id: params.post })
+    const { route } = this.props
+    this.posts.findBy({ id: route.params.postId })
   }
 
   componentDidUpdate() {
@@ -35,19 +36,22 @@ class Show extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.posts.findBy({ id: nextProps.params.post })
+    const { route } = nextProps
+    this.posts.findBy({ id: route.params.postId })
   }
 
   render() {
     const { selected, isLoading } = this.posts
     const { channel } = selected
 
-    const { modal } = this.props.setting.layout
+    const { route, setting } = this.props
+
+    const { modal } = setting.layout
 
     return (
-      <Filterable filter={<Playlist params={this.props.params} channel={channel} />} playback>
+      <Filterable filter={<Playlist params={route.params} channel={channel} />} playback>
         <div styleName='video'>
-          <Video modal={modal} posts={this.posts} params={this.props.params} />
+          <Video modal={modal} posts={this.posts} params={route.params} />
         </div>
         <div styleName='title_bar'>
           <h1>{selected.title}</h1>
@@ -60,4 +64,4 @@ class Show extends React.Component {
   }
 }
 
-export default Show
+export default withRoute(Show)

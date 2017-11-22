@@ -10,9 +10,10 @@ class Item extends React.PureComponent {
 
     return (
       <li className='pure-menu-item animated fadeIn' styleName='playlist_item'>
-        <Link routeName='posts.show' routeParams={{ post: id }}
-              className='pure-menu-link' routeOptions={{ reload: true }}
-              styleName={c({ active: router.isActive('posts.show', { post: id }) })}>
+        <Link routeName='posts.show' 
+              routeParams={{ postId: id }}
+              className='pure-menu-link'
+              styleName={c({ active: router.isActive('posts.show', { postId: id }) })}>
           <h5>{this.props.title}</h5>
         </Link>
       </li>

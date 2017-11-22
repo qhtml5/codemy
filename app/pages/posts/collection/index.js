@@ -1,6 +1,7 @@
 import React                from 'react'
 import Scrollbars           from 'react-custom-scrollbars'
 import { inject, observer } from 'mobx-react'
+import { withRoute }        from 'react-router5'
 import _                    from 'lodash'
 
 import { Filterable }       from 'components/page'
@@ -24,26 +25,24 @@ class Collection extends React.Component {
     this.posts = new Posts(endpoints.studio)
   }
   
-
   componentWillReceiveProps(nextProps) {
-    const { channel } = nextProps.params
-
-    this.posts.findAll({ search: true, channel_id: channel, page: 1 })
+    const { channelId } = nextProps.route.params
+    this.posts.findAll({ search: true, channel_id: channelId, page: 1 })
   }
 
   componentDidMount() {
-    const { posts, params } = this.props
-    const { channel } = params
-    this.posts.findAll({ search: true, channel_id: channel, page: 1 })
+    const { posts, route } = this.props
+    const { channelId } = route.params
+    this.posts.findAll({ search: true, channel_id: channelId, page: 1 })
   }
 
   paginate = _.debounce(() => { 
     const { currentPage } = this.posts
 
-    const { channel } = this.props.params
+    const { channelId } = this.props.route.params
 
     this.posts.findAll({ 
-      search: true, channel_id: channel, page: currentPage + 1 
+      search: true, channel_id: channelId, page: currentPage + 1 
     }, { replace: false })
   }, 800)
 
@@ -53,10 +52,11 @@ class Collection extends React.Component {
 
   render() {
     const { isLoading, collection } = this.posts
+    const { channelId } = this.props.route.params
 
     return (
       <Filterable filter={<Filter />}>
-        <Keyword posts={this.posts} channelId={this.props.channelId} />
+        <Keyword posts={this.posts} channelId={channelId} />
         <Scrollbars autoHeight autoHeightMin={`calc(100vh - 52px)`} 
                     onScrollFrame={this.handleScroll} universal ref={node => { this.scrollbar = node }}>
           <div styleName='collection'>
@@ -71,4 +71,4 @@ class Collection extends React.Component {
   }
 }
 
-export default Collection
+export default withRoute(Collection)

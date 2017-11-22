@@ -1,5 +1,4 @@
 import React from 'react'
-import { observable, action } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
 import Scrollbars from 'react-custom-scrollbars'
@@ -14,17 +13,13 @@ import styles from './index.sass'
 import Store from './store'
 
 @inject('endpoints') @observer
-class Playlist extends React.Component {
-  @observable current = null
-  @observable userInteracted = false
+class Playlist extends React.PureComponent {
   showPrevious = 1
   itemHeight = 42
 
-  @action setCurrentSlug = (slug) => this.currentSlug = slug
-  @action setUserInteracted() { this.userInteracted = true }
-  @action setCurrent = (node) => {
-    if (node && node.props.slug === this.props.params.post) {
-      this.current = node
+  setCurrent = (node) => {
+    if (node && node.props.slug === this.props.params.postId) {
+      this.setState({ current: node })
     }
   }
 
@@ -34,14 +29,19 @@ class Playlist extends React.Component {
     const { endpoints } = props
 
     this.store = new Store(endpoints.studio)
+    this.state = {
+      current: null,
+      userInteracted: false,
+      currentChannel: null
+    }
   }
 
   getItems(channel) {
-    const { selected } = this.store
+    const { currentChannel } = this.state
 
-    if (channel && channel.slug !== selected.slug) {
+    if (channel && channel.slug !== currentChannel) {
       this.store.findAll({ search: true, playlist_id: channel.slug })
-      this.store.setSelected({ slug: channel.slug })
+      this.setState({ currentChannel: channel.slug, userInteracted: true })
     }
   }
 
@@ -51,34 +51,31 @@ class Playlist extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { channel } = this.props
-    const { selected } = this.store
 
     if (!channel && nextProps.channel) this.getItems(nextProps.channel)
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    const { channel } = this.props
-    const { selected } = this.store
+  componentDidUpdate() {
+    const { current, userInteracted } = this.state
 
-    if (channel && selected.slug === channel.slug) {
-      this.setUserInteracted()
-      return false
+    if (this.scrollbar && current && !userInteracted) {
+      this.scrollbar.scrollTop((current.props.index - this.showPrevious) * this.itemHeight)
     }
-    return true
   }
 
-  componentDidUpdate() {
-    if (this.scrollbar && this.current && !this.userInteracted) {
-      this.scrollbar.scrollTop((this.current.props.index - this.showPrevious) * this.itemHeight)
-    }
+  shouldComponentUpdate(nextProps, nextState) {
+    if (!this.props.channel && nextProps.channel) 
+      return true
+
+    return false
   }
 
   render() {
     const { channel } = this.props
-    const { isLoading, collection, selected } = this.store
+    const { isLoading, collection } = this.store
     
     if (isLoading) { return (<Loading />) }
-    if (!channel) { return null }
+    if (!channel)  { return null }
 
     return (
       <div className='pure-menu'>

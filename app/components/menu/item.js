@@ -9,15 +9,14 @@ const Item = props => {
 
   const activeClass = c({ 
     active: isActive('channels.show', { 
-      channel: props.id 
+      channelId: props.id 
     }) 
   })
 
   return (
     <li className='pure-menu-item' styleName='item'>
-      <Link routeName='channels.show' 
-            routeOptions={{ reload: true }}
-            routeParams={{ channel: props.id }}
+      <Link routeName='channels.show'
+            routeParams={{ channelId: props.id }}
             className='pure-menu-link'
             styleName={activeClass}>
         <h5>{props.name}</h5>
