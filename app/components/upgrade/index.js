@@ -8,7 +8,7 @@ import { Subscribe }        from 'components/subscription'
 import { Login }            from 'components/auth'
 import Omise                from 'components/omise'
 
-import { Subscriptions }    from 'stores'
+import { Subscriptions, Cards }    from 'stores'
   
 import t from './index.locale'
 
@@ -22,6 +22,7 @@ class Upgrade extends React.Component {
     const { endpoints } = props
 
     this.subscription = new Subscriptions(endpoints.studio)
+    this.cards = new Cards(endpoints.studio)
   }
 
   @computed get subscriptionActiveAndValid() {
@@ -46,7 +47,7 @@ class Upgrade extends React.Component {
   }
 
   loadCards() {
-    const { cards } = this.props
+    const { cards } = this
     if (!cards.fetched && !cards.isLoading) {
       cards.findAll()
     }
