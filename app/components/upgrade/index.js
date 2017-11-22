@@ -39,7 +39,7 @@ class Upgrade extends React.Component {
   }
 
   loadSubscription() {
-    const { subscription } = this.props
+    const { subscription } = this
     if (subscription.selected === {} && !subscription.isLoading) {
       subscription.find()
     }
