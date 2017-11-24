@@ -26,23 +26,23 @@ class Collection extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
-    const { channelId } = nextProps.route.params
-    this.posts.findAll({ search: true, channel_id: channelId, page: 1 })
+    const { channelId, keyword } = nextProps.route.params
+    this.posts.findAll({ search: true, channel_id: channelId, keyword, page: 1 })
   }
 
   componentDidMount() {
     const { posts, route } = this.props
-    const { channelId } = route.params
-    this.posts.findAll({ search: true, channel_id: channelId, page: 1 })
+    const { channelId, keyword } = route.params
+    this.posts.findAll({ search: true, channel_id: channelId, keyword, page: 1 })
   }
 
   paginate = _.debounce(() => { 
     const { currentPage } = this.posts
 
-    const { channelId } = this.props.route.params
+    const { channelId, keyword } = this.props.route.params
 
     this.posts.findAll({ 
-      search: true, channel_id: channelId, page: currentPage + 1 
+      search: true, channel_id: channelId, keyword, page: currentPage + 1
     }, { replace: false })
   }, 800)
 
@@ -52,11 +52,11 @@ class Collection extends React.Component {
 
   render() {
     const { isLoading, collection } = this.posts
-    const { channelId } = this.props.route.params
+    const { params } = this.props.route
 
     return (
       <Filterable filter={<Filter />}>
-        <Keyword posts={this.posts} channelId={channelId} />
+        <Keyword posts={this.posts} />
         <Scrollbars autoHeight autoHeightMin={`calc(100vh - 52px)`} 
                     onScrollFrame={this.handleScroll} universal ref={node => { this.scrollbar = node }}>
           <div styleName='collection'>

@@ -19,7 +19,7 @@ class Filter extends React.Component {
   }
 
   componentDidMount() {
-    this.channels.findAll({})
+    this.channels.findAll()
   }
 
   route = (channel) => { 

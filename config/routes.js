@@ -1,11 +1,12 @@
 export default [
   { name: 'posts', path: '/posts', children: [
-    { name: 'show', path: '/:postId', children: [
-      { name: 'subscribe', path: '/subscribe' }
-    ]}
+    { name: 'show', path: '/:postId' },
+    { name: 'search', path: '/search/:keyword' }
   ]},
   { name: 'channels', path: '/channels', forwardTo: 'posts', children: [
-    { name: 'show', path: '/:channelId' }
+    { name: 'show', path: '/:channelId', children: [
+      { name: 'search', path: '/search/:keyword' }
+    ]},
   ]},
   { name: 'users', path: '/users', children: [
     { name: 'sign_in', path: '/sign_in' },

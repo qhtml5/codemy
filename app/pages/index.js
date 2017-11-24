@@ -6,11 +6,12 @@ import * as users from './users'
 
 const pages = { 
   posts, 
-  users, 
-  channels: {
-    show: posts.collection
-  }
+  users,
+  channels: {}
 }
+
+pages.channels.show = pages.posts.collection
+pages.posts.search  = pages.posts.collection
 
 export default routeNode('')((props) => {
   const { route } = props
