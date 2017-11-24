@@ -14,9 +14,13 @@ class Keyword extends React.Component {
     const keyword = this.keyword.value
 
     if (params.channelId && keyword.length > 0)
-      router.navigate('channels.show.search', { channelId: params.channelId, keyword })
+      router.navigate('channels.show.search', { 
+        channelId: params.channelId, keyword 
+      })
     else if (params.channelId)
-      router.navigate('channels.show', { channelId: params.channelId })
+      router.navigate('channels.show', { 
+        channelId: params.channelId 
+      })
     else if (keyword.length > 0)
       router.navigate('posts.search', { keyword })
     else
