@@ -1,18 +1,18 @@
-import React from 'react';
-import { observer, inject } from 'mobx-react';
-import { BaseLink, Link } from 'react-router5';
+import React from 'react'
+import { observer, inject } from 'mobx-react'
+import { Link } from 'react-router5'
 
-import styles from './index.sass';
+import styles from './index.sass'
 
 @inject('user', 'subscription', 'cards') @observer
 class Member extends React.Component {
   signOut = (e) => {
-    e.preventDefault();
-    const { user, subscription, cards } = this.props; 
+    e.preventDefault()
+    const { user, subscription, cards } = this.props 
 
-    user.signOut();
-    subscription.clearSelected();
-    cards.clearCollection();
+    user.signOut()
+    subscription.clearSelected()
+    cards.clearCollection()
   }
 
   render() {
@@ -24,7 +24,7 @@ class Member extends React.Component {
 
         <ul className='pure-menu-list'>
           <li className='pure-menu-list'>
-            <Link to='/member/settings' className='pure-menu-link'
+            <Link routeName='settings' className='pure-menu-link'
                        activeClassName={styles.active}>
               <i className='material-icons'>settings</i>
               <span>Settings</span>
@@ -38,8 +38,8 @@ class Member extends React.Component {
           </li>
         </ul>
       </div>
-    );
+    )
   }
 }
 
-export default Member;
+export default Member

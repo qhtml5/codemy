@@ -26,6 +26,8 @@ const resources = {
   setting,
   endpoints,
   user: new stores.Users(endpoints.studio),
+  subscription: new stores.Subscriptions(endpoints.studio),
+  cards: new stores.Cards(endpoints.studio)
 }
 
 const app = 

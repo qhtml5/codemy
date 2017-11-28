@@ -3,10 +3,12 @@ import { routeNode } from 'react-router5'
 
 import * as posts from './posts'
 import * as users from './users'
+import * as settings from './settings'
 
 const pages = { 
   posts, 
   users,
+  settings,
   channels: {}
 }
 

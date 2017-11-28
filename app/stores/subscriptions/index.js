@@ -1,7 +1,7 @@
 import { Connect, mix } from 'fronto-connect'
 import scopes from 'stores/scopes'
 
-import { observable, action, computed } from 'mobx'
+import { observable, computed } from 'mobx'
 
 import t from './locale'
 

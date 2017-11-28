@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router5';
+import React from 'react'
+import { Link } from 'react-router5'
 
-import { Login, Register, Forgot } from 'components/auth';
+import { Login, Register, Forgot } from 'components/auth'
 
-import t from './links.locale';
+import t from './links.locale'
 
 const components = {
   login: (modal) =>
@@ -12,7 +12,7 @@ const components = {
     <Register modal={modal} animate='animated fadeIn' />,
   forgot_password: (modal) => 
     <Forgot modal={modal} animate='animated fadeIn' />,
-};
+}
 
 const links = {
   login: 
@@ -30,16 +30,16 @@ const links = {
 }
 
 const callback = (e, modal, key) => {
-  e.preventDefault();
-  modal.setContent(components[key](modal));
+  e.preventDefault()
+  modal.setContent(components[key](modal))
 }
 
 export default (modal, keys = []) => {
   if (modal) {
     return keys.map(key =>
       <a key={key} href='#' onClick={(e) => callback(e, modal, key)}>{t(key)}</a>
-    );
+    )
   }
 
-  return keys.map(key => links[key]);
-};
+  return keys.map(key => links[key])
+}

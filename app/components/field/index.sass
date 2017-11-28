@@ -1,0 +1,27 @@
+@import 'styles/colors'
+@import 'styles/field'
+
+
+.field
+  color: $flat-gray-4
+  border-radius: 2px
+  margin-bottom: 1em !important
+  background: $flat-blue-4
+  label
+    font-weight: bold
+    color: white
+    > span
+      padding: 0.2em 0.5em
+  input 
+    +field()
+    color: $flat-gray-2
+    margin-bottom: 0px !important
+    border-left: 3px solid $flat-gray-3 !important
+    background: $flat-blue-3
+    border-top-left-radius: 0px !important
+    border-top-right-radius: 0px !important
+    border-bottom-left-radius: 2px !important
+    border-bottom-right-radius: 2px !important
+    &:focus
+      color: white
+      border-left: 3px solid $flat-orange-1 !important
