@@ -67,16 +67,18 @@ class Profile extends React.Component {
     
     return (
       <Filterable filter={<Menu />}>
-        <Setting title={t('title')} className={form.content}
-              alert={{ message, dismiss: clearMessage }}
-              isLoading={isLoading} actionable={actionable}>
-          <form className='pure-form pure-g pure-form-stacked animated fadeIn'
-                onSubmit={this.submitForm}>
-            <fieldset className='pure-u-1'>
-              <Field type='text' name='name' data={user.name} ref='name' label={t('name')} />
-              <Field type='email' name='email' data={user.email} ref='email' label={t('email')} />
-            </fieldset>
-          </form>
+        <Setting title={t('title')}
+                 alert={{ message, dismiss: clearMessage }}
+                 isLoading={isLoading} actionable={actionable}>
+          <div styleName='form.body'>
+            <form className='pure-form pure-g pure-form-stacked animated fadeIn'
+                  onSubmit={this.submitForm}>
+              <fieldset className='pure-u-1'>
+                <Field type='text' name='name' data={user.name} ref='name' label={t('name')} />
+                <Field type='email' name='email' data={user.email} ref='email' label={t('email')} />
+              </fieldset>
+            </form>
+          </div>
         </Setting>
       </Filterable>
     )
