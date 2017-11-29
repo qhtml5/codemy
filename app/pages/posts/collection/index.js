@@ -1,8 +1,8 @@
 import React                from 'react'
 import Scrollbars           from 'react-custom-scrollbars'
 import { inject, observer } from 'mobx-react'
-import { withRoute }        from 'react-router5'
 import _                    from 'lodash'
+import { withRoute }        from 'react-router5'
 
 import { Filterable }       from 'components/page'
 import Loading              from 'components/loading'
@@ -56,7 +56,7 @@ class Collection extends React.Component {
 
     return (
       <Filterable filter={<Filter />}>
-        <Keyword posts={this.posts} />
+        <Keyword posts={this.posts} {...this.props} />
         <Scrollbars autoHeight autoHeightMin={`calc(100vh - 52px)`} 
                     onScrollFrame={this.handleScroll} universal ref={node => { this.scrollbar = node }}>
           <div styleName='collection'>

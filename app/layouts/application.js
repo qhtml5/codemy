@@ -7,7 +7,6 @@ import Loading from 'components/loading'
 import Pages from '../pages'
 import * as Menu from './menu'
 
-
 import './application.sass'
 
 @observer

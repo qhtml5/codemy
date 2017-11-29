@@ -1,7 +1,7 @@
 import { Connect, mix } from 'fronto-connect'
 import scopes from 'stores/scopes'
 
-import { observable, computed } from 'mobx'
+import { extendObservable, computed } from 'mobx'
 
 import t from './locale'
 
@@ -9,7 +9,13 @@ class Subscriptions extends Connect {
   namespace = 'v1/member'
   resource = 'subscription'
 
-  @observable status = 'inactive'
+  constructor(api, namespace = null) {
+    super(api, namespace)
+
+    extendObservable(this, {
+      status: 'inactive'
+    })
+  }
 
   @computed get isValid() {
     return this.selected.still_valid

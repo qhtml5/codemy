@@ -1,26 +1,23 @@
 import { createElement } from 'react'
 import { routeNode } from 'react-router5'
 
-import * as posts from './posts'
+import posts from './posts'
+import channels from './channels'
 import * as users from './users'
-import * as settings from './settings'
+import settings from './settings'
 
-const pages = { 
+const app = { 
   posts, 
   users,
   settings,
-  channels: {}
+  channels
 }
-
-pages.channels.show = pages.posts.collection
-pages.posts.search  = pages.posts.collection
 
 export default routeNode('')((props) => {
   const { route } = props
   const { params } = route
 
-  const resource = route.name.split('.')[0]
-  const page = route.name.split('.')[1] || 'collection'
+  const layout = route.name.split('.')[0]
 
-  return createElement(pages[resource][page])
+  return createElement(app[layout])
 })

@@ -17,7 +17,7 @@ const Main = (props) => {
 
       <ul className='pure-menu-list'>
         <li className='pure-menu-item'>
-          <Link routeName='posts' routeOptions={{reload: true}} className='pure-menu-link'
+          <Link routeName='posts' className='pure-menu-link'
                 styleName={c({ active: router.isActive('posts') })}>
             <i className='material-icons'>video_library</i>
             <span>Videos</span>

@@ -1,6 +1,5 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { withRoute } from 'react-router5'
 
 import _ from 'lodash'
 
@@ -55,4 +54,4 @@ class Keyword extends React.Component {
   }
 }
 
-export default withRoute(Keyword)
+export default Keyword
