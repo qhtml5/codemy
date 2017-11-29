@@ -2,15 +2,13 @@ import React from 'react'
 import c from 'classnames'
 import { Link, withRoute } from 'react-router5'
 
-import './index.sass'
-import logo   from 'assets/logo.svg'
+import styles from './index.sass'
+import logo from 'assets/logo.svg'
 
 const Main = (props) => {
-  const { router } = props;
-
   return (
-    <div className='pure-menu' styleName='menu'>
-      <span className='pure-menu-heading' styleName='heading'>
+    <div className='pure-menu' styleName='styles.menu'>
+      <span className='pure-menu-heading' styleName='styles.heading'>
         <div><img src={logo} width='48' height='48' /></div>
         <div>CODEMY.NET</div>
       </span>
@@ -18,7 +16,7 @@ const Main = (props) => {
       <ul className='pure-menu-list'>
         <li className='pure-menu-item'>
           <Link routeName='posts' className='pure-menu-link'
-                styleName={c({ active: router.isActive('posts') })}>
+                activeClassName={styles.active}>
             <i className='material-icons'>video_library</i>
             <span>Videos</span>
           </Link>
@@ -28,4 +26,4 @@ const Main = (props) => {
   )
 }
 
-export default withRoute(Main);
+export default withRoute(Main)

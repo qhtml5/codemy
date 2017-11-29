@@ -8,7 +8,9 @@ class Users extends Connect {
   resource  = 'identity/callback'
 
   @observable signedIn = false
-  @action setSignedIn = status => this.signedIn = status
+  @action setSignedIn(status) {
+    this.signedIn = status
+  }
 
   @computed get current() {
     return this.selected

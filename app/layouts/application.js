@@ -16,25 +16,18 @@ class Application extends React.Component {
     user.signIn()
   }
 
-  setModal = (node) => {
-    const { setting } = this.props
-    setting.layout.modal = node
-  }
-
-
   memberOrGuest = () => {
     const { signedIn, isLoading } = this.props.user
 
-    if (isLoading)
-      return (<Loading />)
-
-    if (signedIn)
-      return (<Menu.Member />)
+    if (isLoading) return <Loading />
+    if (signedIn) return <Menu.Member />
 
     return (<Menu.Guest />)
   }
 
-  render() {    
+  render() {
+    const { layout } = this.props.setting
+
     return (
       <Provider {...this.props}>
         <div id='Application'>
@@ -45,7 +38,7 @@ class Application extends React.Component {
           <main styleName='content'>
             <Pages />
           </main>
-          <Modal ref={this.setModal} />
+          <Modal ref={layout.setModal} />
         </div>
       </Provider>
     );

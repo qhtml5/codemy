@@ -1,31 +1,32 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Link } from 'react-router5'
+import { Link, withRoute } from 'react-router5'
 
 import styles from './index.sass'
 
-@inject('user', 'subscription', 'cards') @observer
+@inject('user', 'subscription') @observer
 class Member extends React.Component {
   signOut = (e) => {
     e.preventDefault()
-    const { user, subscription, cards } = this.props 
+    const { user, subscription, router } = this.props 
 
     user.signOut()
     subscription.clearSelected()
-    cards.clearCollection()
+
+    router.navigate('posts')
   }
 
   render() {
     return (
-      <div className={`${styles.menu} pure-menu`}>
-        <span className={`${styles.heading} pure-menu-heading`}>
+      <div className='pure-menu' styleName='styles.menu'>
+        <span className='pure-menu-heading' styleName='styles.heading'>
           MEMBER
         </span>
 
         <ul className='pure-menu-list'>
           <li className='pure-menu-list'>
-            <Link routeName='settings' className='pure-menu-link'
-                       activeClassName={styles.active}>
+            <Link routeName='settings' className='pure-menu-link' 
+                  activeClassName={styles.active}>
               <i className='material-icons'>settings</i>
               <span>Settings</span>
             </Link>
@@ -42,4 +43,4 @@ class Member extends React.Component {
   }
 }
 
-export default Member
+export default withRoute(Member)

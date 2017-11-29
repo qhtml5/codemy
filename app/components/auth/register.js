@@ -40,12 +40,11 @@ class Register extends React.Component {
       return
     }
 
-    user.setEmail(email.value)
-    user.create(
-      email.value,
-      password.value,
-      password_confirmation.value,
-    )
+    user.create(null, {
+      email: email.value,
+      password: password.value,
+      password_confirmation: password_confirmation.value
+    })
   }
 
   render() {
