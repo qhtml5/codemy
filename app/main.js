@@ -9,7 +9,9 @@ import { Application,
 import createRouter from 'config/router'
 
 import { api } from 'fronto-api'
-import * as stores from './stores'
+import { Users, 
+         Subscriptions, 
+         Settings } from './stores'
 
 useStrict(true)
 
@@ -30,8 +32,9 @@ const endpoints = {
 const resources = {
   layout,
   endpoints,
-  user: new stores.Users(endpoints.studio),
-  subscription: new stores.Subscriptions(endpoints.studio)
+  user: new Users(endpoints.studio),
+  subscription: new Subscriptions(endpoints.studio),
+  setting: new Settings(endpoints.studio)
 }
 
 const app =

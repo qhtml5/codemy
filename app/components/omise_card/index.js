@@ -20,7 +20,7 @@ import { Cards } from 'stores'
 
 import t from './index.locale.js'
 
-@inject('endpoints') @observer
+@inject('endpoints', 'setting') @observer
 class OmiseCard extends React.Component {
   constructor(props) {
     super(props)
@@ -52,7 +52,9 @@ class OmiseCard extends React.Component {
   }
   
   componentDidMount() {
-    Omise.setPublicKey(process.env.OMISE_PUBLIC_KEY)
+    const { selected } = this.props.setting
+
+    Omise.setPublicKey(selected.omise.public_key)
   }
 
   validateCard = () => {

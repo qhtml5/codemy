@@ -13,8 +13,9 @@ import './application.sass'
 @observer
 class Application extends React.Component {
   componentDidMount() {
-    const { user } = this.props
+    const { user, setting } = this.props
 
+    setting.find()
     user.signIn()
   }
 

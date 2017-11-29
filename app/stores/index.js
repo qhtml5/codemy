@@ -5,6 +5,7 @@ import Profiles from './profiles'
 import Subscriptions from './subscriptions'
 import Histories from './histories'
 import Cards from './cards'
+import Settings from './settings'
 
 export { 
   Users,
@@ -13,5 +14,6 @@ export {
   Profiles,
   Subscriptions,
   Histories,
-  Cards
+  Cards,
+  Settings
 }
