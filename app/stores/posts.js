@@ -1,12 +1,18 @@
-import { action, observable } from 'mobx' 
+import { action, extendObservable } from 'mobx' 
 import { Connect } from 'fronto-connect'
 
 export default class extends Connect { 
   namespace = 'v1'
   resource  = 'posts'
 
-  @observable currentPage = 0
-  @observable totalPages = 1
+  constructor(api, namespace = null) {
+    super(api, namespace)
+
+    extendObservable(this, { 
+      currentPage: 0,
+      totalPages: 1
+    })
+  }
 
   @action setTotalPages = pages =>
     this.totalPages = pages

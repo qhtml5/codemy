@@ -1,5 +1,5 @@
 import { Connect } from 'fronto-connect'
-import { observable, action, computed } from 'mobx'
+import { extendObservable, action, computed } from 'mobx'
 
 import t from './locale'
 
@@ -7,7 +7,14 @@ class Users extends Connect {
   namespace = 'auth'
   resource  = 'identity/callback'
 
-  @observable signedIn = false
+  constructor(api, namespace = null) {
+    super(api, namespace)
+
+    extendObservable(this, {
+      signedIn: false
+    })
+  }
+
   @action setSignedIn(status) {
     this.signedIn = status
   }

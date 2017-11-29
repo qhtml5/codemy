@@ -32,7 +32,7 @@ const resources = {
   subscription: new stores.Subscriptions(endpoints.studio)
 }
 
-const app = 
+const app =
   <RouterProvider router={router}>
     <Application {...resources} />
   </RouterProvider>
