@@ -22,7 +22,7 @@ import states from './states'
 import { Subscriptions, 
          Histories } from 'stores'
 
-@inject('endpoints', 'setting', 'subscription') @observer
+@inject('endpoints', 'layout', 'subscription') @observer
 class Subscription extends React.Component {
   constructor(props) {
     super(props)
@@ -43,7 +43,7 @@ class Subscription extends React.Component {
     e.preventDefault()
 
     const { status } = this.props.subscription
-    const { modal } = this.props.setting.layout
+    const { modal } = this.props.layout
 
     modal.setContent(
       states[status].content(modal)

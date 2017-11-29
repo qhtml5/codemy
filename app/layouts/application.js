@@ -1,5 +1,6 @@
 import React from 'react'
 import { observer, Provider } from 'mobx-react'
+import { observable, action } from 'mobx'
 
 import Modal from '@fronto/components/modal'
 
@@ -13,6 +14,7 @@ import './application.sass'
 class Application extends React.Component {
   componentDidMount() {
     const { user } = this.props
+
     user.signIn()
   }
 
@@ -26,7 +28,7 @@ class Application extends React.Component {
   }
 
   render() {
-    const { layout } = this.props.setting
+    const { layout } = this.props
 
     return (
       <Provider {...this.props}>

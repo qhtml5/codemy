@@ -16,7 +16,7 @@ import styles from './index.sass'
 
 import { Cards } from 'stores'
 
-@inject('endpoints', 'setting') @observer
+@inject('endpoints', 'layout') @observer
 class Collection extends React.Component {
   constructor(props) {
     super(props)
@@ -35,7 +35,7 @@ class Collection extends React.Component {
   }
 
   newCard = (e) => {
-    const { modal } = this.props.setting.layout
+    const { modal } = this.props.layout
 
     modal.setContent(<OmiseCard modal={modal} />)
     modal.open(e)
@@ -43,7 +43,7 @@ class Collection extends React.Component {
 
   render() {
     const { collection, isLoading, message, clearMessage } = this.cards
-    const { modal } = this.props.setting.layout
+    const { modal } = this.props.layout
 
     const actionable =
       <div className='pure-g'>

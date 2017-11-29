@@ -15,7 +15,7 @@ import Playlist from './playlist'
 
 import './index.sass'
 
-@inject('endpoints', 'setting') @observer
+@inject('endpoints', 'layout') @observer
 class Show extends React.Component {
   constructor(props) {
     super(props)
@@ -44,9 +44,9 @@ class Show extends React.Component {
     const { selected, isLoading } = this.posts
     const { channel } = selected
 
-    const { route, setting } = this.props
+    const { route, layout } = this.props
 
-    const { modal } = setting.layout
+    const { modal } = layout
 
     return (
       <Filterable filter={<Playlist params={route.params} channel={channel} />} playback>

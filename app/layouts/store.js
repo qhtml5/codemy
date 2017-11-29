@@ -1,10 +1,10 @@
 import { observable, action } from 'mobx'
 
-const layout = observable({
+const store = observable({
   modal: null,
   setModal: action(node =>
-    layout.modal = node
+    store.modal = node
   )
 })
 
-export { layout }
+export default store

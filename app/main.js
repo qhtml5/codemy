@@ -4,11 +4,11 @@ import { Provider } from 'mobx-react'
 import { useStrict } from 'mobx'
 import { RouterProvider } from 'react-router5'
 
-import Application from './layouts/application'
+import { Application, 
+         store as layout  } from './layouts'
 import createRouter from 'config/router'
 
 import { api } from 'fronto-api'
-import * as setting from './setting'
 import * as stores from './stores'
 
 useStrict(true)
@@ -26,7 +26,7 @@ const endpoints = {
 }
 
 const resources = {
-  setting,
+  layout,
   endpoints,
   user: new stores.Users(endpoints.studio),
   subscription: new stores.Subscriptions(endpoints.studio)
