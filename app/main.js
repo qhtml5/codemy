@@ -13,7 +13,9 @@ import * as stores from './stores'
 
 useStrict(true)
 
-const router = createRouter({ listener: true, logger: true })
+const router = createRouter({ 
+  listener: true, logger: true 
+})
 
 const endpoints = {
   studio: api({
