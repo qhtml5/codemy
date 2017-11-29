@@ -6,7 +6,7 @@ import Loading              from 'components/loading'
 
 import { Subscribe }        from 'components/subscription'
 import { Login }            from 'components/auth'
-import Omise                from 'components/omise'
+import OmiseCard            from 'components/omise_card'
 
 import { Subscriptions, Cards }    from 'stores'
   
@@ -26,10 +26,10 @@ class Upgrade extends React.Component {
   }
 
   @computed get subscriptionActiveAndValid() {
-    const { subscription, user } = this.props
+    const { user } = this.props
     return user.signedIn
-           && subscription.isValid 
-           && subscription.isActive
+           && this.subscription.isValid 
+           && this.subscription.isActive
   }
 
   complete = () => {
@@ -76,14 +76,14 @@ class Upgrade extends React.Component {
   }
 
   @computed get loading() {
-    const { user, cards, subscription } = this.props
+    const { user } = this.props
     return (user.isLoading 
-            || cards.isLoading
-            || subscription.isLoading)
+            || this.cards.isLoading
+            || this.subscription.isLoading)
   }
 
   render() {
-    const { modal, subscription, user, cards } = this.props
+    const { modal, user } = this.props
     const { components } = this
 
     if (this.subscriptionActiveAndValid) { 
@@ -98,11 +98,11 @@ class Upgrade extends React.Component {
       return <Login modal={modal} animate='animated fadeIn' /> 
     }
 
-    if (cards.collection.length === 0) { 
-      return <Omise modal={modal} buttonName={t('subscribe')} /> 
+    if (this.cards.collection.length === 0) { 
+      return <OmiseCard modal={modal} buttonName={t('subscribe')} /> 
     }
 
-    return <Subscribe modal={modal} cards={cards.collection} onClose={this.complete} />
+    return <Subscribe modal={modal} cards={this.cards.collection} onClose={this.complete} />
   }
 }
 

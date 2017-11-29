@@ -16,28 +16,39 @@ import master from './master.svg'
 import jcb from './jcb.svg'
 
 import styles from './index.sass'
+import { Cards } from 'stores'
 
 import t from './index.locale.js'
 
-@inject('cards') @observer
-class Omise extends React.Component {
-  @observable cardNumber = {
-    isValid: false,
-  }
-  @observable cardType = null
-  @observable expirationDate = {
-    isValid: false,
-  }
-  @observable cardCode = {
-    isValid: false,
-  }
+@inject('endpoints') @observer
+class OmiseCard extends React.Component {
+  constructor(props) {
+    super(props)
 
-  @observable isLoading = false
+    const { endpoints } = props
+
+    this.cards = new Cards(endpoints.studio)
+
+    this.state = {
+      cardNumber: { 
+        isValid: false
+      },
+      cardType: null,
+      expirationDate: {
+        isValid: false
+      },
+      cardCode: {
+        isValid: false,
+      },
+      isLoading: false
+    }
+  }
 
   @computed get cardValid() {
-    return this.cardNumber.isValid &&
-            this.expirationDate.isValid &&
-            this.cardCode.isValid
+    const { cardNumber, expirationDate, carCode } = this.state
+    return cardNumber.isValid &&
+            expirationDate.isValid &&
+            cardCode.isValid
   }
   
   componentDidMount() {
@@ -49,22 +60,25 @@ class Omise extends React.Component {
             expiration_month, expiration_year,
             name } = this.refs
 
-    this.cardNumber = validator.number(number.value)
-    this.expirationDate = validator.expirationDate({
-      month: expiration_month.value,
-      year: expiration_year.value,
+    this.setState({
+      cardNumber: validator.number(number.value),
+      expirationDate: alidator.expirationDate({
+        month: expiration_month.value,
+        year: expiration_year.value,
+      }),
+      cardCode: validator.cvv(security_code.value),
+      cardType: null
     })
-    this.cardCode = validator.cvv(security_code.value)
-    this.cardType = null
 
-    if (this.cardNumber.card && this.cardNumber.card.type) {
-      this.cardType = this.cardNumber.card.type
+    const { cardNumber } = this.state
+
+    if (cardNumber.card && cardNumber.card.type) {
+      this.setState({ cardType: cardNumber.card.type })
     }
   }
 
   addCard = (response) => {
-    const { cards } = this.props
-    cards.create(response, this.props.callback)
+    this.cards.create(response, this.props.callback)
   }
 
   createToken = (e) => {
@@ -101,6 +115,8 @@ class Omise extends React.Component {
 
 
   render() {
+    const { cardType, cardNumber, expirationDate, cardCode } = this.state
+
     return (
       <div styleName='modalStyles.content'>
         <h3>{t('add_new_card')}</h3>
@@ -109,11 +125,11 @@ class Omise extends React.Component {
         </div>
         <div styleName='styles.type'>
           <img src={visa} width={50}
-               styleName={c({ [styles.active]: this.cardType === 'visa' })} />
+               styleName={c({ [styles.active]: cardType === 'visa' })} />
           <img src={master} width={50}
-               styleName={c({ [styles.active]: this.cardType === 'master-card' })} />
+               styleName={c({ [styles.active]: cardType === 'master-card' })} />
           <img src={jcb} width={50}
-               styleName={c({ [styles.active]: this.cardType === 'jcb' })} />
+               styleName={c({ [styles.active]: cardType === 'jcb' })} />
         </div>
         <form className='pure-form pure-form-stacked' styleName='styles.form'
               onKeyUp={this.validateCard} onSubmit={this.createToken}>
@@ -123,7 +139,7 @@ class Omise extends React.Component {
               <input ref='number' name='number' type='text'
                      pattern="[0-9]{13,16}"
                      className='pure-input-1' 
-                     styleName={c(styles.number, { [styles.valid]: this.cardNumber.isValid })} />
+                     styleName={c('styles.number', { 'styles.valid': cardNumber.isValid })} />
             </div>
             <div className='pure-u-md-7-24'>
               <label htmlFor='expiration_month'>{t('expiry_date')}</label>
@@ -131,13 +147,13 @@ class Omise extends React.Component {
                 <input ref='expiration_month' type='text'
                        pattern="[0-9]{1,2}" name='expiration_month'
                        className='pure-input-1'
-                       styleName={c({ [styles.valid]: this.expirationDate.isValid })} />
+                       styleName={c({ 'styles.valid': expirationDate.isValid })} />
               </div>
               <div className='pure-u-md-1-2'>
                 <input ref='expiration_year' type='text'
                        pattern="[0-9]{2,4}" name='expiration_year'
                        className='pure-input-1'
-                       styleName={c({ [styles.valid]: this.expirationDate.isValid })} />
+                       styleName={c({ 'styles.valid': expirationDate.isValid })} />
               </div>
             </div>
           </div>
@@ -150,16 +166,16 @@ class Omise extends React.Component {
               <label htmlFor='security_code'>{t('cvc')}</label>
               <input ref='security_code' name='security_code'
                      className='pure-input-1-2'
-                     styleName={c({ [styles.valid]: this.cardCode.isValid })} />
+                     styleName={c({ 'styles.valid': cardCode.isValid })} />
             </div>
           </div>
-          <div className={c(styles.action, cardStyles.action)}>
+          <div styleName='styles.action modalStyles.action'>
             <a href='#' onClick={(e) => this.props.modal.close(e)}
                className={c('pure-button', button.default)}>
               {t('cancel')}
             </a>
-            <button type='submit' className={c('pure-button', button.success)}
-                                  disabled={!this.cardValid}>
+            <button type='submit' className='pure-button' 
+                    styleName='button.success' disabled={!this.cardValid}>
               {this.props.buttonName || t('save')}
             </button>
           </div>
@@ -169,4 +185,4 @@ class Omise extends React.Component {
   }
 }
 
-export default Omise
+export default OmiseCard

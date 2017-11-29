@@ -3,7 +3,7 @@ import { routeNode } from 'react-router5'
 
 import posts from './posts'
 import channels from './channels'
-import * as users from './users'
+import users from './users'
 import settings from './settings'
 
 const app = { 

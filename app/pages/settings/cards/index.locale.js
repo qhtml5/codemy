@@ -1,8 +1,8 @@
 import localize from 'fronto-localize'
 
 const en = {
-  cancel: 'Cancel Subscription',
-  subscribe: 'Subscribe',
+  your_cards: 'Your Cards',
+  add_new_card: 'Add New Card',
 }
 
 export default localize({ en })

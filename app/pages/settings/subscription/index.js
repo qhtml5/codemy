@@ -72,7 +72,7 @@ class Subscription extends React.Component {
         <div className='pure-u-md-1-6'>
           <a href='#' onClick={this.showModal}
             className='pure-button pure-u-1' 
-            styleName={c('button.noRound', states[status].button, 'styles.action')}>
+            styleName={c('button.noRound', states[status].button)}>
             {states[status].action}
           </a>
         </div>
