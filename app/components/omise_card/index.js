@@ -45,7 +45,7 @@ class OmiseCard extends React.Component {
   }
 
   @computed get cardValid() {
-    const { cardNumber, expirationDate, carCode } = this.state
+    const { cardNumber, expirationDate, cardCode } = this.state
     return cardNumber.isValid &&
             expirationDate.isValid &&
             cardCode.isValid
@@ -62,7 +62,7 @@ class OmiseCard extends React.Component {
 
     this.setState({
       cardNumber: validator.number(number.value),
-      expirationDate: alidator.expirationDate({
+      expirationDate: validator.expirationDate({
         month: expiration_month.value,
         year: expiration_year.value,
       }),
@@ -125,11 +125,11 @@ class OmiseCard extends React.Component {
         </div>
         <div styleName='styles.type'>
           <img src={visa} width={50}
-               styleName={c({ [styles.active]: cardType === 'visa' })} />
+               styleName={c({ 'styles.active': cardType === 'visa' })} />
           <img src={master} width={50}
-               styleName={c({ [styles.active]: cardType === 'master-card' })} />
+               styleName={c({ 'styles.active': cardType === 'master-card' })} />
           <img src={jcb} width={50}
-               styleName={c({ [styles.active]: cardType === 'jcb' })} />
+               styleName={c({ 'styles.active': cardType === 'jcb' })} />
         </div>
         <form className='pure-form pure-form-stacked' styleName='styles.form'
               onKeyUp={this.validateCard} onSubmit={this.createToken}>

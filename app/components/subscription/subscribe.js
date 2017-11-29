@@ -3,7 +3,6 @@ import { observer, inject } from 'mobx-react'
 import classNames from 'classnames'
 
 import Loading from 'components/loading'
-import Omise from 'components/omise'
 
 import modalStyles from 'styles/modal.sass'
 import button from 'styles/button.sass'
