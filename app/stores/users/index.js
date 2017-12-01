@@ -1,5 +1,6 @@
-import { Connect } from 'fronto-connect'
+import { Connect, mix } from 'fronto-connect'
 import { extendObservable, action, computed } from 'mobx'
+import scopes from '../scopes'
 
 import t from './locale'
 
@@ -87,5 +88,7 @@ class Users extends Connect {
     })
   }
 }
+
+mix(Users, scopes.writable)
 
 export default Users

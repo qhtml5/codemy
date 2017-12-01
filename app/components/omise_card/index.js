@@ -80,7 +80,7 @@ class OmiseCard extends React.Component {
   }
 
   addCard = (response) => {
-    this.cards.create(response, this.props.callback)
+    this.cards.create(null, response, this.props.callback)
   }
 
   createToken = (e) => {
