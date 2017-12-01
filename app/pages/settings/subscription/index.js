@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react'
 import { withRoute } from 'react-router5'
 import c from 'classnames'
 
-import { Filterable, Setting } from 'components/page'
+import { Setting } from 'components/page'
 import Loading from 'components/loading'
 
 import Menu from '../menu'
