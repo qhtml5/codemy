@@ -1,5 +1,4 @@
 import React from 'react'
-import classNames from 'classnames'
 import { observer, inject } from 'mobx-react'
 
 import form from 'styles/form.sass'
@@ -40,7 +39,7 @@ class Forgot extends React.Component {
     this.passwords.create(null, {
       email: this.email.value
     }, {
-      200: user.setMessage({ body: t('success'), type: 'success' })
+      200: (response) => user.setMessage({ body: t('success'), type: 'success' })
     })
 
     this.email.value = null
@@ -48,7 +47,8 @@ class Forgot extends React.Component {
 
   render() {
     const { fill, animate, user } = this.props 
-    const { message, clearMessage, isLoading } = user
+    const { message, clearMessage } = user
+    const { isLoading } = this.passwords
 
     return (
       <Auth alert={{ message, clearMessage }} isLoading={isLoading} fill={fill} animate={animate}

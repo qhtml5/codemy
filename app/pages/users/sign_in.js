@@ -1,8 +1,7 @@
 import React from 'react'
 import { Login } from 'components/auth'
-import { withRoute } from 'react-router5'
  
-export default withRoute(props => {
+export default props => {
   const { router } = props
 
   const goToPosts = () => router.navigate('posts')
@@ -12,4 +11,4 @@ export default withRoute(props => {
            animate='animated fadeIn'
            callback={goToPosts} />
   )
-})
+}

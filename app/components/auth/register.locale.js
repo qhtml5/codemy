@@ -1,4 +1,4 @@
-import localize from 'fronto-localize';
+import localize from 'fronto-localize'
 
 const en = {
   email: 'Email',
@@ -7,6 +7,6 @@ const en = {
   fields_are_empty: 'Fields are empty',
   create_account: 'Create an Account',
   register: "Register",
-};
+}
 
-export default localize({ en });
+export default localize({ en })
