@@ -8,27 +8,42 @@ import button from 'styles/button.sass'
 import { Auth } from 'components/page'
 import links from './links'
 
+import { Passwords } from 'stores'
+
 import t from './forgot.locale'
 
-@inject('user') @observer
+@inject('user', 'endpoints') @observer
 class Forgot extends React.Component {
+  constructor(props) {
+    super(props)
+
+    const { endpoints } = props
+
+    this.passwords = new Passwords(endpoints.studio)
+  }
+
   componentWillMount() {
     this.props.user.clearMessage()
   }
 
   submitForm = (e) => {
     e.preventDefault()
-    const { email } = this.refs
     const { user } = this.props
 
-    if (email.value === '') {
+    if (this.email.value === '') {
       user.setMessage({
         body: t('fill_in_email'),
         type: 'error',
       })
     }
 
-    return
+    this.passwords.create(null, {
+      email: this.email.value
+    }, {
+      200: user.setMessage({ body: t('success'), type: 'success' })
+    })
+
+    this.email.value = null
   }
 
   render() {
@@ -43,7 +58,7 @@ class Forgot extends React.Component {
           <fieldset>
             <label htmlFor='email'>{t('email')}</label>
             <input type='email'
-                    ref='email'
+                    ref={node => this.email = node}
                     placeholder={t('email')}
                     className='pure-input-1' />
           </fieldset>

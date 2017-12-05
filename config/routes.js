@@ -17,6 +17,7 @@ export default [
   { name: 'users', path: '/users', children: [
     { name: 'sign_in', path: '/sign_in' },
     { name: 'forgot_password', path: '/forgot_password' },
+    { name: 'reset_password', path: '/reset_password' },
     { name: 'registration', path: '/registration' }
   ]}
 ];
