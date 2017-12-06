@@ -1,17 +1,7 @@
-import { createElement } from 'react'
+import React, { createElement } from 'react'
 import { routeNode } from 'react-router5'
-
-import posts from './posts'
-import channels from './channels'
-import users from './users'
-import settings from './settings'
-
-const app = { 
-  posts, 
-  users,
-  settings,
-  channels
-}
+import Loadable from 'react-loadable'
+import Loading from 'components/loading'
 
 export default routeNode('')((props) => {
   const { route } = props
@@ -19,5 +9,8 @@ export default routeNode('')((props) => {
 
   const layout = route.name.split('.')[0]
 
-  return createElement(app[layout])
-})
+  return createElement(Loadable({
+    loader: () => import(`./${layout}`),
+    loading: (props) => <Loading />
+  }))
+ })

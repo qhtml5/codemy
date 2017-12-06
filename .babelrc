@@ -3,7 +3,7 @@
     ["@babel/env", {
       "modules": false,
       "targets": {
-        "browsers": "> 1%",
+        "browsers": "last 2 versions",
       },
       "useBuiltIns": "entry"
     }],
@@ -12,7 +12,8 @@
   ],
 
   "plugins": [
-    "lodash",
+    "lodash", 
+    "react-loadable/babel",
     ["module-resolver", {
       "root": "./app",
       "alias": {
