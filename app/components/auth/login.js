@@ -11,11 +11,7 @@ import logo from 'assets/logo-white.svg'
 import t from './login.locale'
 
 @inject('user') @observer
-class Login extends React.Component { 
-  componentDidMount() {
-    this.props.user.clearMessage()
-  }
-
+class Login extends React.Component {
   submitForm = (e) => {
     e.preventDefault()
 

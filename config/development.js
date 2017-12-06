@@ -7,7 +7,7 @@ const output = require('./output')
 const resolve = require('./resolve')
 
 output.filename = 'javascripts/[name].js'
-output.chunkFilename = 'javascripts/[name].[hash].chunk.js'
+output.chunkFilename = 'javascripts/[name].chunk.js'
 
 const loaders = {
   babel: require('./loaders/babel'),
