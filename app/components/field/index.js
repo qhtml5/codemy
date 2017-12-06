@@ -5,7 +5,7 @@ import './index.sass'
 
 class Field extends React.PureComponent {
   render() {
-    const { name, data, type, label } = this.props
+    const { name, data, type, label, disabled } = this.props
 
     return (
       <div className='pure-control-group pure-u-1' styleName='field'>
@@ -14,7 +14,7 @@ class Field extends React.PureComponent {
                type={type}
                className='pure-input-1'
                ref={(input) => { this.input = input }}
-               defaultValue={data} />
+               defaultValue={data} disabled={disabled} />
       </div>
     )
   }

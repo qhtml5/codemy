@@ -4,7 +4,8 @@ const en = {
   title: 'Edit Profile',
   name: 'Name',
   email: 'Email',
-  save: 'Save Profile'
+  save: 'Save Profile',
+  success: 'Profile Saved!'
 }
 
 export default localize({ en })

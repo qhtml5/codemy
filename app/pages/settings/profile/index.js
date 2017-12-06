@@ -23,11 +23,11 @@ class Profile extends React.Component {
 
     const { endpoints } = props
 
-    this.profile = new Profiles(endpoints.studio)
+    this.store = new Profiles(endpoints.studio)
   }
 
   componentDidMount() {
-    this.profile.find()
+    this.store.find()
     title(t('title'))
   }
 
@@ -41,16 +41,23 @@ class Profile extends React.Component {
 
     const { name, email } = this.refs
 
-    this.profile.update(null, { 
+    this.store.update(null, { 
       user: {
         name: name.input.value,
         email: email.input.value,
       }
+    }, {
+      200: this.onSuccess
     })
   }
 
+  onSuccess = (response) => {
+    this.store.setMessage({ body: t('success'), type: 'success' })
+    this.store.setSelected(response.data)
+  }
+
   render() {
-    const { selected, isLoading, message, clearMessage } = this.profile
+    const { selected, isLoading, message, clearMessage } = this.store
     const user = selected.user || {}
 
     const actionable =
@@ -74,7 +81,7 @@ class Profile extends React.Component {
                 onSubmit={this.submitForm}>
             <fieldset className='pure-u-1'>
               <Field type='text' name='name' data={user.name} ref='name' label={t('name')} />
-              <Field type='email' name='email' data={user.email} ref='email' label={t('email')} />
+              <Field type='email' name='email' data={user.email} ref='email' disabled label={t('email')} />
             </fieldset>
           </form>
         </div>

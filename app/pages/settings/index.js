@@ -3,6 +3,7 @@ import React, { createElement } from 'react'
 import profile from './profile'
 import subscription from './subscription'
 import cards from './cards'
+import password from './password'
 
 import Menu from './menu'
 
@@ -10,7 +11,7 @@ import { routeNode } from 'react-router5'
 import { Filterable } from 'components/page'
 
 const pages = {
-  profile, subscription, cards
+  profile, subscription, cards, password
 }
 
 export default routeNode('settings')((props) => {

@@ -11,26 +11,21 @@ import { Passwords } from 'stores'
 
 import t from './forgot.locale'
 
-@inject('user', 'endpoints') @observer
+@inject('endpoints') @observer
 class Forgot extends React.Component {
   constructor(props) {
     super(props)
 
     const { endpoints } = props
 
-    this.passwords = new Passwords(endpoints.studio)
-  }
-
-  componentWillMount() {
-    this.props.user.clearMessage()
+    this.passwords = new Passwords(endpoints.studio, 'auth')
   }
 
   submitForm = (e) => {
     e.preventDefault()
-    const { user } = this.props
 
     if (this.email.value === '') {
-      user.setMessage({
+      this.passwords.setMessage({
         body: t('fill_in_email'),
         type: 'error',
       })
@@ -39,16 +34,15 @@ class Forgot extends React.Component {
     this.passwords.create(null, {
       email: this.email.value
     }, {
-      200: (response) => user.setMessage({ body: t('success'), type: 'success' })
+      200: (response) => this.passwords.setMessage({ body: t('success'), type: 'success' })
     })
 
     this.email.value = null
   }
 
   render() {
-    const { fill, animate, user } = this.props 
-    const { message, clearMessage } = user
-    const { isLoading } = this.passwords
+    const { fill, animate } = this.props 
+    const { message, clearMessage, isLoading } = this.passwords
 
     return (
       <Auth alert={{ message, clearMessage }} isLoading={isLoading} fill={fill} animate={animate}

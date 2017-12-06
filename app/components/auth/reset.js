@@ -11,14 +11,14 @@ import { Passwords } from 'stores'
 
 import t from './reset.locale'
 
-@inject('user', 'endpoints') @observer
+@inject('endpoints') @observer
 class Reset extends React.Component {
   constructor(props) {
     super(props)
 
     const { endpoints } = props
 
-    this.passwords = new Passwords(endpoints.studio)
+    this.store = new Passwords(endpoints.studio, 'auth')
   }
 
   submitForm = (e) => {
@@ -31,7 +31,7 @@ class Reset extends React.Component {
       confirm: this.confirm.value
     }
 
-    this.passwords.update({ id: token }, { reset }, {
+    this.store.update({ id: token }, { reset }, {
       200: (response) => this.props.callback(),
       422: (response) => { /* handle fail password update */ }
     })
@@ -41,9 +41,8 @@ class Reset extends React.Component {
   }
 
   render() {
-    const { user, fill, animate } = this.props
-    const { message, clearMessage } = user
-    const { isLoading } = this.passwords
+    const { fill, animate } = this.props
+    const { message, clearMessage, isLoading } = this.store
 
     return (
       <Auth alert={{ message, clearMessage }} isLoading={isLoading} fill={fill} animate={animate}
