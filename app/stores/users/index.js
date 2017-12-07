@@ -42,7 +42,7 @@ class Users extends Connect {
         const { user, token } = body.data
         localStorage.setItem('token', token)
         this.setCurrentUser(body, token)
-        callback()
+        if (callback) callback()
       },
       401: (body) => {
         const { error } = body.data
