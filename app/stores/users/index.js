@@ -70,6 +70,7 @@ class Users extends Connect {
     const { user } = body.data
     this.selected = {  
       email: user.email,
+      confirmed_at: user.confirmed_at,
       token
     }
   }

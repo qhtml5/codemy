@@ -1,6 +1,7 @@
 import React from 'react'
 import { observer, Provider } from 'mobx-react'
 import { observable, action } from 'mobx'
+import { NotificationStack } from 'react-notification'
 
 import Modal from '@fronto/components/modal'
 
@@ -42,6 +43,9 @@ class Application extends React.Component {
             <Pages />
           </main>
           <Modal ref={layout.setModal} />
+          <NotificationStack 
+            notifications={layout.notifications.slice()}
+            onDismiss={notification => {}} />
         </div>
       </Provider>
     );

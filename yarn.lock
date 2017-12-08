@@ -5476,6 +5476,12 @@ react-loadable@^5.3.1:
   dependencies:
     prop-types "^15.5.0"
 
+react-notification@^6.8.2:
+  version "6.8.2"
+  resolved "https://registry.yarnpkg.com/react-notification/-/react-notification-6.8.2.tgz#5d9910cc2993bd51a234d3809e94a98dc490cfb0"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-player@^0.25.3:
   version "0.25.3"
   resolved "https://registry.yarnpkg.com/react-player/-/react-player-0.25.3.tgz#dc86010855fefe7e4460a341971e8e0d558ecf63"
