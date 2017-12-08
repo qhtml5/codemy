@@ -21,6 +21,12 @@ class Reset extends React.Component {
     this.store = new Passwords(endpoints.studio, 'auth')
   }
 
+  onUnprocessable = (response) => {
+    this.store.setMessage({ 
+      body: t('password_not_match'), type: 'error'
+    })
+  }
+
   submitForm = (e) => {
     e.preventDefault()
 
@@ -33,7 +39,7 @@ class Reset extends React.Component {
 
     this.store.update({ id: token }, { reset }, {
       200: (response) => this.props.callback(),
-      422: (response) => { /* handle fail password update */ }
+      422: this.onUnprocessable
     })
 
     this.password.value = null

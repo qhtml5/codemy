@@ -5,7 +5,8 @@ const en = {
   password: "New Password",
   password_confirmation: "Confirm Password",
   success: "Password Updated!",
-  change_password: "Update Password"
+  change_password: "Update Password",
+  password_not_match: "Passwords do not match, please try again."
 }
 
 export default localize({ en })
