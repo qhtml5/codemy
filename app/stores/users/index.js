@@ -24,6 +24,11 @@ class Users extends Connect {
     return this.selected
   }
 
+  @computed get confirmed() {
+    return (this.selected.email && 
+            this.selected.confirmed_at) || false
+  }
+
   signIn(email = null, password = null) { 
     const token = localStorage.getItem('token')
 

@@ -11,13 +11,31 @@ import * as Menu from './menu'
 
 import './application.sass'
 
+import confirmation from './confirmation'
+
 @observer
 class Application extends React.Component {
+  constructor(props) {
+    super(props)
+
+    const { user, layout } = props
+
+    this.confirmation = confirmation({ user, layout })
+  }
+
   componentDidMount() {
-    const { user, setting } = this.props
+    const { user, setting, layout } = this.props
 
     setting.find()
     user.signIn()
+  }
+
+  componentDidUpdate() {
+    const { user, layout } = this.props
+
+    if (!user.confirmed && !this.confirmation.notified) {
+      this.confirmation.notify()
+    }
   }
 
   memberOrGuest = () => {
@@ -31,6 +49,7 @@ class Application extends React.Component {
 
   render() {
     const { layout } = this.props
+    const { notifications } = layout
 
     return (
       <Provider {...this.props}>
@@ -44,7 +63,7 @@ class Application extends React.Component {
           </main>
           <Modal ref={layout.setModal} />
           <NotificationStack 
-            notifications={layout.notifications.slice()}
+            notifications={notifications.slice()}
             onDismiss={notification => {}} />
         </div>
       </Provider>
