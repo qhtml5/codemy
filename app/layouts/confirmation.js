@@ -1,14 +1,5 @@
 import t from './confirmation.locale'
-import { Connect, mix } from 'fronto-connect'
-import scopes from 'stores/scopes'
-
-class Store extends Connect {
-  namespace = 'v1/member'
-  resource = 'confirmations'
-}
-
-mix(Store, scopes.readable)
-mix(Store, scopes.writable)
+import { Confirmations } from 'stores'
 
 export default (props) => {
   const { layout, endpoints, user } = props
@@ -26,16 +17,16 @@ export default (props) => {
       onClick: (notification, deactivate) => {
         deactivate()
         confirmation.store.create(null, {}, {
-          200: (response) => { layout.appendNotification({
+          200: (response) => { layout.addNotification({
             message: t('email_resent'),
             key: 'resend'
           })}
         })
       }
     },
-    store: new Store(endpoints.studio),
+    store: new Confirmations(endpoints.studio, 'v1/member'),
     notify() {
-      layout.appendNotification(this.notification)
+      layout.addNotification(this.notification)
       confirmation.notified = true
     }
   }

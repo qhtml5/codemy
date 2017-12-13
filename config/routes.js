@@ -18,6 +18,7 @@ export default [
     { name: 'sign_in', path: '/sign_in' },
     { name: 'forgot_password', path: '/forgot_password' },
     { name: 'reset_password', path: '/reset_password/:token' },
+    { name: 'confirm', path: '/confirm/:token' },
     { name: 'registration', path: '/registration' }
   ]}
 ];

@@ -6,6 +6,7 @@ import Subscriptions from './subscriptions'
 import Histories from './histories'
 import Cards from './cards'
 import Passwords from './passwords'
+import Confirmations from './confirmations'
 import Settings from './settings'
 
 export { 
@@ -17,5 +18,6 @@ export {
   Histories,
   Cards,
   Passwords,
+  Confirmations,
   Settings
 }
