@@ -10,6 +10,10 @@ const store = observable({
   appendNotification: action(notification => {
     const existing = store.notifications
     store.notifications = existing.concat(notification)
+  }),
+  removeNotification: action(notification => {
+    const existing = store.notifications
+    store.notifications = existing.filter(n => n.key !== notification.key )
   })
 })
 

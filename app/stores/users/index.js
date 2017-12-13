@@ -25,8 +25,11 @@ class Users extends Connect {
   }
 
   @computed get confirmed() {
-    return (this.selected.email && 
-            this.selected.confirmed_at) || false
+    if (this.signedIn) {
+      return this.selected.confirmed_at || false
+    } else {
+      return true
+    }
   }
 
   signIn(email = null, password = null) { 

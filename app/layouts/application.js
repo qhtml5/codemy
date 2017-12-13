@@ -1,7 +1,6 @@
 import React from 'react'
 import { observer, Provider } from 'mobx-react'
 import { observable, action } from 'mobx'
-import { NotificationStack } from 'react-notification'
 
 import Modal from '@fronto/components/modal'
 
@@ -12,15 +11,16 @@ import * as Menu from './menu'
 import './application.sass'
 
 import confirmation from './confirmation'
+import Notifications from './notifications'
 
 @observer
 class Application extends React.Component {
   constructor(props) {
     super(props)
 
-    const { user, layout } = props
+    const { user, layout, endpoints } = props
 
-    this.confirmation = confirmation({ user, layout })
+    this.confirmation = confirmation({ user, layout, endpoints })
   }
 
   componentDidMount() {
@@ -49,7 +49,6 @@ class Application extends React.Component {
 
   render() {
     const { layout } = this.props
-    const { notifications } = layout
 
     return (
       <Provider {...this.props}>
@@ -62,9 +61,7 @@ class Application extends React.Component {
             <Pages />
           </main>
           <Modal ref={layout.setModal} />
-          <NotificationStack 
-            notifications={notifications.slice()}
-            onDismiss={notification => {}} />
+          <Notifications />
         </div>
       </Provider>
     );
