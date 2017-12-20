@@ -23,8 +23,10 @@ const endpoints = {
   studio: api({
     endpoint: '/',
     header: (h) => {
-      const token = localStorage.getItem('token');
-      h.append('Authorization', `Bearer ${token}`);
+      const token = localStorage.getItem('token')
+      if (token) {
+        h.append('Authorization', `Bearer ${token}`)
+      }
     }
   }),
 }

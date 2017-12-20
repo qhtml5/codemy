@@ -10,6 +10,8 @@ import * as Menu from './menu'
 
 import './application.sass'
 
+import t from './application.locale'
+
 import confirmation from './confirmation'
 import Notifications from './notifications'
 
