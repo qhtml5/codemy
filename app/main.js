@@ -1,6 +1,5 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Provider } from 'mobx-react'
 import { useStrict } from 'mobx'
 import { RouterProvider } from 'react-router5'
 
