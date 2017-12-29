@@ -2,7 +2,6 @@ import React                from 'react'
 import Scrollbars           from 'react-custom-scrollbars'
 import { inject, observer } from 'mobx-react'
 import _                    from 'lodash'
-import { withRoute }        from 'react-router5'
 
 import { Filterable }       from 'components/page'
 import Loading              from 'components/loading'
@@ -71,4 +70,4 @@ class Collection extends React.Component {
   }
 }
 
-export default withRoute(Collection)
+export default Collection

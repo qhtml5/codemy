@@ -1,6 +1,6 @@
 import React from 'react'
 import c from 'classnames'
-import { Link, withRoute } from 'react-router5'
+import { Link } from 'react-router5'
 
 import styles from './index.sass'
 import logo from 'assets/logo.svg'
@@ -26,4 +26,4 @@ const Main = (props) => {
   )
 }
 
-export default withRoute(Main)
+export default Main

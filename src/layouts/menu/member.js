@@ -8,7 +8,7 @@ import styles from './index.sass'
 class Member extends React.Component {
   signOut = (e) => {
     e.preventDefault()
-    const { user, subscription, router } = this.props 
+    const { user, subscription, router } = this.props
 
     user.signOut()
     subscription.clearSelected()

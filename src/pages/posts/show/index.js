@@ -1,7 +1,6 @@
 import React from 'react'
 import Scrollbars from 'react-custom-scrollbars'
 import { observer, inject } from 'mobx-react'
-import { withRoute } from 'react-router5'
 
 import { Filterable } from 'components/page'
 // import Modal from 'components/Modal'
@@ -64,4 +63,4 @@ class Show extends React.Component {
   }
 }
 
-export default withRoute(Show)
+export default Show
