@@ -1,6 +1,5 @@
 import React from 'react'
 import { observer, Provider } from 'mobx-react'
-import { observable, action } from 'mobx'
 
 import Modal from '@fronto/components/modal'
 
