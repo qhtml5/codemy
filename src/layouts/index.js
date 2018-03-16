@@ -1,5 +1,5 @@
 import store from './store'
-import Application from './Application'
+import Application from './application'
 
 export { 
   Application,
