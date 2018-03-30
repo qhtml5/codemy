@@ -43,7 +43,6 @@ const app =
     <Application {...resources} />
   </RouterProvider>
 
-
 router.start(() => 
   render(app, document.getElementById('app'))
 )
