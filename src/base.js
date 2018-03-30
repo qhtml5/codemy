@@ -21,6 +21,7 @@ import 'prismjs/components/prism-coffeescript'
 import 'animate.css/animate.css'
 import 'purecss/build/pure.css'
 import 'purecss/build/grids-responsive.css'
+import 'styles/global/overrides.css'
 
 import 'vendor/@google/styles/material-icons.css'
 import 'vendor/@prismjs/styles/dracula.css'

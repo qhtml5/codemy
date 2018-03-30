@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = new HtmlWebpackPlugin({
   chunks: ['base', 'app', 'manifest'],
   filename: 'index.html',
-  name: 'Codemy',
+  name: 'codemy',
   minify: { 
     collapseWhitespace: true
   },
