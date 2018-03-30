@@ -13,7 +13,8 @@ export default routeNode('posts')((props) => {
 
   const page = route.name.split('.')[1] || 'collection'
 
-  if (page === 'collection') return createElement(pages[page])
+  if (['collection', 'search'].includes(page))
+    return createElement(pages[page])
 
   return createElement(pages[page], {...props})
 })
